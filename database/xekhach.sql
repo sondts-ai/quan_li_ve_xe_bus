@@ -1,115 +1,53 @@
-﻿USE [master]
+USE [master]
 GO
-/****** Object:  Database [xekhach]    Script Date: 12/25/2025 2:24:19 PM ******/
-CREATE DATABASE [xekhach]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'xekhach', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL17.SONKAKA\MSSQL\DATA\xekhach.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
- LOG ON 
-( NAME = N'xekhach_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL17.SONKAKA\MSSQL\DATA\xekhach_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
- WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+
+/****** 1. TAO DATABASE (Neu chua co) ******/
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'xekhach')
+BEGIN
+    CREATE DATABASE [xekhach]
+END
 GO
-ALTER DATABASE [xekhach] SET COMPATIBILITY_LEVEL = 170
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [xekhach].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [xekhach] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [xekhach] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [xekhach] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [xekhach] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [xekhach] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [xekhach] SET AUTO_CLOSE OFF 
-GO
-ALTER DATABASE [xekhach] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [xekhach] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [xekhach] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [xekhach] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [xekhach] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [xekhach] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [xekhach] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [xekhach] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [xekhach] SET  DISABLE_BROKER 
-GO
-ALTER DATABASE [xekhach] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [xekhach] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [xekhach] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [xekhach] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [xekhach] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [xekhach] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [xekhach] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [xekhach] SET RECOVERY FULL 
-GO
-ALTER DATABASE [xekhach] SET  MULTI_USER 
-GO
-ALTER DATABASE [xekhach] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [xekhach] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [xekhach] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [xekhach] SET TARGET_RECOVERY_TIME = 60 SECONDS 
-GO
-ALTER DATABASE [xekhach] SET DELAYED_DURABILITY = DISABLED 
-GO
-ALTER DATABASE [xekhach] SET ACCELERATED_DATABASE_RECOVERY = OFF  
-GO
-ALTER DATABASE [xekhach] SET OPTIMIZED_LOCKING = OFF 
-GO
-EXEC sys.sp_db_vardecimal_storage_format N'xekhach', N'ON'
-GO
-ALTER DATABASE [xekhach] SET QUERY_STORE = ON
-GO
-ALTER DATABASE [xekhach] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
-GO
+
 USE [xekhach]
 GO
-/****** Object:  Table [dbo].[lichtrinh]    Script Date: 12/25/2025 2:24:20 PM ******/
+
+/****** 2. TAO BANG (TABLES) ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[lichtrinh](
-	[lichid] [int] IDENTITY(1,1) NOT NULL,
-	[xeid] [int] NOT NULL,
-	[tuyenid] [int] NOT NULL,
-	[thoigiankhoihanh] [datetime] NOT NULL,
-	[thoigianden] [datetime] NOT NULL,
-	[soghetrong] [int] NULL,
-	[giave] [decimal](18, 0) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[lichid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+
+-- Bang: Xe
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[xe]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[xe](
+	[xeid] [int] IDENTITY(1,1) NOT NULL,
+	[tenxe] [nvarchar](100) NOT NULL,
+	[bienso] [varchar](20) NULL,
+	[tongghe] [int] NULL,
+	[loaixe] [nvarchar](100) NULL,
+PRIMARY KEY CLUSTERED ([xeid] ASC)
+)
+END
 GO
-/****** Object:  Table [dbo].[nguoidung]    Script Date: 12/25/2025 2:24:20 PM ******/
-SET ANSI_NULLS ON
+
+-- Bang: Tuyen Xe
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tuyenxe]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[tuyenxe](
+	[tuyenid] [int] IDENTITY(1,1) NOT NULL,
+	[khoihanh] [nvarchar](100) NOT NULL,
+	[diemden] [nvarchar](100) NOT NULL,
+	[khoangcach] [float] NULL,
+	[thoigiandichuyen] [int] NULL,
+PRIMARY KEY CLUSTERED ([tuyenid] ASC)
+)
+END
 GO
-SET QUOTED_IDENTIFIER ON
-GO
+
+-- Bang: Nguoi Dung
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[nguoidung]') AND type in (N'U'))
+BEGIN
 CREATE TABLE [dbo].[nguoidung](
 	[nguoidungid] [int] IDENTITY(1,1) NOT NULL,
 	[hoten] [nvarchar](100) NOT NULL,
@@ -119,34 +57,30 @@ CREATE TABLE [dbo].[nguoidung](
 	[taikhoan] [varchar](50) NOT NULL,
 	[matkhau] [varchar](50) NOT NULL,
 	[vaitro] [nvarchar](50) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[nguoidungid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+PRIMARY KEY CLUSTERED ([nguoidungid] ASC)
+)
+END
 GO
-/****** Object:  Table [dbo].[tuyenxe]    Script Date: 12/25/2025 2:24:20 PM ******/
-SET ANSI_NULLS ON
+
+-- Bang: Lich Trinh
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[lichtrinh]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[lichtrinh](
+	[lichid] [int] IDENTITY(1,1) NOT NULL,
+	[xeid] [int] NOT NULL,
+	[tuyenid] [int] NOT NULL,
+	[thoigiankhoihanh] [datetime] NOT NULL,
+	[thoigianden] [datetime] NOT NULL,
+	[soghetrong] [int] NULL,
+	[giave] [decimal](18, 0) NULL,
+PRIMARY KEY CLUSTERED ([lichid] ASC)
+)
+END
 GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[tuyenxe](
-	[tuyenid] [int] IDENTITY(1,1) NOT NULL,
-	[khoihanh] [nvarchar](100) NOT NULL,
-	[diemden] [nvarchar](100) NOT NULL,
-	[khoangcach] [float] NULL,
-	[thoigiandichuyen] [int] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[tuyenid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[vexe]    Script Date: 12/25/2025 2:24:20 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
+
+-- Bang: Ve Xe
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[vexe]') AND type in (N'U'))
+BEGIN
 CREATE TABLE [dbo].[vexe](
 	[veid] [int] IDENTITY(1,1) NOT NULL,
 	[nguoidungid] [int] NOT NULL,
@@ -154,85 +88,53 @@ CREATE TABLE [dbo].[vexe](
 	[vitrighe] [varchar](50) NOT NULL,
 	[thoigiandat] [datetime] NULL,
 	[trangthai] [nvarchar](100) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[veid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+PRIMARY KEY CLUSTERED ([veid] ASC)
+)
+END
 GO
-/****** Object:  Table [dbo].[xe]    Script Date: 12/25/2025 2:24:20 PM ******/
-SET ANSI_NULLS ON
+
+/****** 3. TAO RANG BUOC (CONSTRAINTS & KEYS) ******/
+
+-- Rang buoc UNIQUE (Khong trung lap)
+IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name='UQ_sdt' AND object_id = OBJECT_ID('dbo.nguoidung'))
+BEGIN
+    ALTER TABLE [dbo].[nguoidung] ADD CONSTRAINT [UQ_sdt] UNIQUE NONCLUSTERED ([sdt] ASC)
+END
+
+IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name='UQ_taikhoan' AND object_id = OBJECT_ID('dbo.nguoidung'))
+BEGIN
+    ALTER TABLE [dbo].[nguoidung] ADD CONSTRAINT [UQ_taikhoan] UNIQUE NONCLUSTERED ([taikhoan] ASC)
+END
+
+IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name='uq_ghe_lichtrinh' AND object_id = OBJECT_ID('dbo.vexe'))
+BEGIN
+    ALTER TABLE [dbo].[vexe] ADD CONSTRAINT [uq_ghe_lichtrinh] UNIQUE NONCLUSTERED ([lichid] ASC, [vitrighe] ASC)
+END
+
+IF NOT EXISTS (SELECT * FROM sys.indexes WHERE name='UQ_bienso' AND object_id = OBJECT_ID('dbo.xe'))
+BEGIN
+    ALTER TABLE [dbo].[xe] ADD CONSTRAINT [UQ_bienso] UNIQUE NONCLUSTERED ([bienso] ASC)
+END
 GO
-SET QUOTED_IDENTIFIER ON
+
+-- Gia tri mac dinh (DEFAULT)
+ALTER TABLE [dbo].[lichtrinh] ADD DEFAULT ((0)) FOR [giave]
 GO
-CREATE TABLE [dbo].[xe](
-	[xeid] [int] IDENTITY(1,1) NOT NULL,
-	[tenxe] [nvarchar](100) NOT NULL,
-	[bienso] [varchar](20) NULL,
-	[tongghe] [int] NULL,
-	[loaixe] [nvarchar](100) NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[xeid] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+ALTER TABLE [dbo].[nguoidung] ADD DEFAULT ('khachhang') FOR [vaitro]
 GO
-SET ANSI_PADDING ON
+ALTER TABLE [dbo].[vexe] ADD DEFAULT (getdate()) FOR [thoigiandat]
 GO
-/****** Object:  Index [UQ__nguoidun__DDDFB48378D0CFE9]    Script Date: 12/25/2025 2:24:20 PM ******/
-ALTER TABLE [dbo].[nguoidung] ADD UNIQUE NONCLUSTERED 
-(
-	[sdt] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+ALTER TABLE [dbo].[vexe] ADD DEFAULT (N'đã đặt') FOR [trangthai]
 GO
-SET ANSI_PADDING ON
+ALTER TABLE [dbo].[xe] ADD CHECK (([tongghe]>(0)))
 GO
-/****** Object:  Index [UQ__nguoidun__FE7B8730AB7A7474]    Script Date: 12/25/2025 2:24:20 PM ******/
-ALTER TABLE [dbo].[nguoidung] ADD UNIQUE NONCLUSTERED 
-(
-	[taikhoan] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+
+-- Khoa ngoai (FOREIGN KEYS)
+ALTER TABLE [dbo].[lichtrinh] WITH CHECK ADD FOREIGN KEY([tuyenid]) REFERENCES [dbo].[tuyenxe] ([tuyenid])
 GO
-SET ANSI_PADDING ON
+ALTER TABLE [dbo].[lichtrinh] WITH CHECK ADD FOREIGN KEY([xeid]) REFERENCES [dbo].[xe] ([xeid])
 GO
-/****** Object:  Index [uq_ghe_lichtrinh]    Script Date: 12/25/2025 2:24:20 PM ******/
-ALTER TABLE [dbo].[vexe] ADD  CONSTRAINT [uq_ghe_lichtrinh] UNIQUE NONCLUSTERED 
-(
-	[lichid] ASC,
-	[vitrighe] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+ALTER TABLE [dbo].[vexe] WITH CHECK ADD FOREIGN KEY([lichid]) REFERENCES [dbo].[lichtrinh] ([lichid])
 GO
-SET ANSI_PADDING ON
-GO
-/****** Object:  Index [UQ__xe__8562C4EEFC685DFA]    Script Date: 12/25/2025 2:24:20 PM ******/
-ALTER TABLE [dbo].[xe] ADD UNIQUE NONCLUSTERED 
-(
-	[bienso] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-GO
-ALTER TABLE [dbo].[lichtrinh] ADD  DEFAULT ((0)) FOR [giave]
-GO
-ALTER TABLE [dbo].[nguoidung] ADD  DEFAULT ('khachhang') FOR [vaitro]
-GO
-ALTER TABLE [dbo].[vexe] ADD  DEFAULT (getdate()) FOR [thoigiandat]
-GO
-ALTER TABLE [dbo].[vexe] ADD  DEFAULT (N'đã đặt') FOR [trangthai]
-GO
-ALTER TABLE [dbo].[lichtrinh]  WITH CHECK ADD FOREIGN KEY([tuyenid])
-REFERENCES [dbo].[tuyenxe] ([tuyenid])
-GO
-ALTER TABLE [dbo].[lichtrinh]  WITH CHECK ADD FOREIGN KEY([xeid])
-REFERENCES [dbo].[xe] ([xeid])
-GO
-ALTER TABLE [dbo].[vexe]  WITH CHECK ADD FOREIGN KEY([lichid])
-REFERENCES [dbo].[lichtrinh] ([lichid])
-GO
-ALTER TABLE [dbo].[vexe]  WITH CHECK ADD FOREIGN KEY([nguoidungid])
-REFERENCES [dbo].[nguoidung] ([nguoidungid])
-GO
-ALTER TABLE [dbo].[xe]  WITH CHECK ADD CHECK  (([tongghe]>(0)))
-GO
-USE [master]
-GO
-ALTER DATABASE [xekhach] SET  READ_WRITE 
+ALTER TABLE [dbo].[vexe] WITH CHECK ADD FOREIGN KEY([nguoidungid]) REFERENCES [dbo].[nguoidung] ([nguoidungid])
 GO
