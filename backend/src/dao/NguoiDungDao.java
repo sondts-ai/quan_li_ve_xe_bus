@@ -71,4 +71,29 @@ public class NguoiDungDao {
         }
         return false;
     }
+    public NguoiDung layThongTinTheoId(int id) {
+        String sql = "SELECT * FROM nguoidung WHERE nguoidungid = ?";
+        try (Connection conn = Connectdb.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new NguoiDung(
+                        rs.getInt("nguoidungid"),
+                        rs.getString("hoten"),
+                        rs.getDate("ngaysinh"),
+                        rs.getString("sdt"),
+                        rs.getString("email"),
+                        rs.getString("taikhoan"),
+                        rs.getString("matkhau"),
+                        rs.getString("vaitro")
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
