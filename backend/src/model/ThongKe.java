@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ThongKe{
     private String tenTuyen;
-    private Date ngayKhoiHanh; // Hoặc dùng Date nếu muốn
+    private Date ngayKhoiHanh; 
     private int soVeDaBan;
     private double doanhThu;
 
