@@ -140,45 +140,62 @@ ALTER TABLE [dbo].[vexe] WITH CHECK ADD FOREIGN KEY([nguoidungid]) REFERENCES [d
 GO
 
 // dữ liệu bảng dbo.xe
-INSERT INTO xe (tenxe, bienso, tongghe, loaixe)
-VALUES
-(N'Xe Giường Nằm 1', N'29A-12345', 40, N'Giường nằm'),
-(N'Xe Giường Nằm 2', N'29A-23456', 40, N'Giường nằm'),
-(N'Xe Limousine 1', N'30B-34567', 22, N'Limousine'),
-(N'Xe Limousine 2', N'30B-45678', 22, N'Limousine'),
-(N'Xe Ghế Ngồi 1', N'51C-56789', 45, N'Ghế ngồi'),
-(N'Xe Ghế Ngồi 2', N'51C-67890', 45, N'Ghế ngồi'),
-(N'Xe Giường Nằm VIP', N'43A-78901', 34, N'Giường nằm VIP'),
-(N'Xe Limousine VIP', N'43A-89012', 18, N'Limousine VIP'),
-(N'Xe Du Lịch', N'92B-90123', 29, N'Xe du lịch'),
-(N'Xe Hợp Đồng', N'92B-01234', 35, N'Hợp đồng');
+    INSERT INTO xe (tenxe, bienso, tongghe, loaixe)
+    VALUES
+    -- Limousine 16 chỗ
+    (N'Xe Limousine 01', N'29A-10001', 16, N'Limousine'),
+    (N'Xe Limousine 02', N'29A-10002', 16, N'Limousine'),
+    (N'Xe Limousine 03', N'30B-10003', 16, N'Limousine'),
+    (N'Xe Limousine 04', N'30B-10004', 16, N'Limousine'),
+    (N'Xe Limousine 05', N'51C-10005', 16, N'Limousine'),
+
+    -- Giường nằm 30 chỗ
+    (N'Xe Giường Nằm 01', N'43A-20001', 30, N'Giường nằm'),
+    (N'Xe Giường Nằm 02', N'43A-20002', 30, N'Giường nằm'),
+    (N'Xe Giường Nằm 03', N'92B-20003', 30, N'Giường nằm'),
+    (N'Xe Giường Nằm 04', N'92B-20004', 30, N'Giường nằm'),
+    (N'Xe Giường Nằm 05', N'29A-20005', 30, N'Giường nằm');
+
 
 // dữ liệu bảng dbo.tuyenxe
 INSERT INTO tuyenxe (khoihanh, diemden, khoangcach, thoigiandichuyen)
 VALUES
-(N'Hà Nội', N'Đà Nẵng', 764.5, 720),
+-- Hà Nội → Hải Phòng
 (N'Hà Nội', N'Hải Phòng', 120.0, 150),
-(N'Hà Nội', N'Sapa', 320.0, 360),
-(N'TP.HCM', N'Cần Thơ', 170.0, 210),
-(N'TP.HCM', N'Vũng Tàu', 95.0, 120),
-(N'Đà Nẵng', N'Huế', 100.0, 150),
-(N'Đà Nẵng', N'Quảng Ngãi', 135.0, 180),
-(N'Cần Thơ', N'An Giang', 120.0, 150),
-(N'Huế', N'Quảng Bình', 165.0, 210),
-(N'Hải Phòng', N'Hà Giang', 480.0, 600);
+(N'Hà Nội', N'Hải Phòng', 120.0, 150),
+(N'Hà Nội', N'Hải Phòng', 120.0, 150),
+(N'Hà Nội', N'Hải Phòng', 120.0, 150),
+
+-- Hà Nội → Thanh Hóa
+(N'Hà Nội', N'Thanh Hóa', 160.0, 180),
+(N'Hà Nội', N'Thanh Hóa', 160.0, 180),
+(N'Hà Nội', N'Thanh Hóa', 160.0, 180),
+
+-- Hà Nội → Nam Định
+(N'Hà Nội', N'Nam Định', 90.0, 120),
+(N'Hà Nội', N'Nam Định', 90.0, 120),
+(N'Hà Nội', N'Nam Định', 90.0, 120);
+
 
 // dữ liệu bảng dbo.lichtrinh
-INSERT INTO lichtrinh (xeid, tuyenid, thoigiankhoihanh, thoigianden, soghetrong, giave)
+INSERT INTO lichtrinh
+(xeid, tuyenid, thoigiankhoihanh, thoigianden, soghetrong, giave)
 VALUES
-(1, 1, '2025-01-10 07:00:00', '2025-01-10 19:00:00', 40, 500000),
-(2, 1, '2025-01-10 19:00:00', '2025-01-11 07:00:00', 40, 520000),
+-- Hà Nội → Hải Phòng
+(1, 1, '2025-01-10 07:00:00', '2025-01-10 09:30:00', 16, 150000),
+(2, 1, '2025-01-10 10:00:00', '2025-01-10 12:30:00', 16, 150000),
+(6, 1, '2025-01-10 19:00:00', '2025-01-10 22:30:00', 30, 180000),
 
-(3, 2, '2025-01-11 08:00:00', '2025-01-11 10:30:00', 45, 120000),
-(4, 3, '2025-01-11 06:00:00', '2025-01-11 12:00:00', 40, 300000),
+-- Hà Nội → Thanh Hóa
+(3, 2, '2025-01-11 06:00:00', '2025-01-11 09:00:00', 16, 200000),
+(4, 2, '2025-01-11 13:00:00', '2025-01-11 16:00:00', 16, 200000),
+(7, 2, '2025-01-11 22:00:00', '2025-01-12 01:00:00', 30, 230000),
 
-(5, 4, '2025-01-12 09:00:00', '2025-01-12 13:00:00', 45, 180000),
-
-(1, 5, '2025-01-13 06:30:00', '2025-01-13 09:00:00', 40, 150000);
+-- Hà Nội → Nam Định
+(5, 3, '2025-01-12 07:30:00', '2025-01-12 09:30:00', 16, 120000),
+(8, 3, '2025-01-12 14:00:00', '2025-01-12 16:00:00', 30, 140000),
+(9, 3, '2025-01-12 18:30:00', '2025-01-12 20:30:00', 30, 140000),
+(10, 3, '2025-01-13 06:00:00', '2025-01-13 08:00:00', 16, 120000);
 
 // dữ liệu bảng dbo.nguoidung
 INSERT INTO nguoidung
@@ -196,8 +213,8 @@ INSERT INTO vexe
 VALUES
 (1, 1, N'A1', GETDATE(), N'ĐÃ ĐẶT'),
 (2, 1, N'A2', GETDATE(), N'ĐÃ ĐẶT'),
-(3, 2, N'B1', GETDATE(), N'ĐÃ ĐẶT'),
-(4, 2, N'B2', GETDATE(), N'ĐÃ ĐẶT'),
-(5, 3, N'C1', GETDATE(), N'ĐÃ ĐẶT'),
-(1, 4, N'D1', GETDATE(), N'ĐÃ ĐẶT'),
-(2, 4, N'D2', GETDATE(), N'ĐÃ ĐẶT');
+(3, 2, N'A3', GETDATE(), N'ĐÃ ĐẶT'),
+(4, 2, N'A4', GETDATE(), N'ĐÃ ĐẶT'),
+(5, 3, N'A5', GETDATE(), N'ĐÃ ĐẶT'),
+(1, 4, N'A6', GETDATE(), N'ĐÃ ĐẶT'),
+(2, 4, N'A7', GETDATE(), N'ĐÃ ĐẶT');
