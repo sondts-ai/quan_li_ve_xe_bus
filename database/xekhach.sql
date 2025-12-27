@@ -138,3 +138,66 @@ ALTER TABLE [dbo].[vexe] WITH CHECK ADD FOREIGN KEY([lichid]) REFERENCES [dbo].[
 GO
 ALTER TABLE [dbo].[vexe] WITH CHECK ADD FOREIGN KEY([nguoidungid]) REFERENCES [dbo].[nguoidung] ([nguoidungid])
 GO
+
+// dữ liệu bảng dbo.xe
+INSERT INTO xe (tenxe, bienso, tongghe, loaixe)
+VALUES
+(N'Xe Giường Nằm 1', N'29A-12345', 40, N'Giường nằm'),
+(N'Xe Giường Nằm 2', N'29A-23456', 40, N'Giường nằm'),
+(N'Xe Limousine 1', N'30B-34567', 22, N'Limousine'),
+(N'Xe Limousine 2', N'30B-45678', 22, N'Limousine'),
+(N'Xe Ghế Ngồi 1', N'51C-56789', 45, N'Ghế ngồi'),
+(N'Xe Ghế Ngồi 2', N'51C-67890', 45, N'Ghế ngồi'),
+(N'Xe Giường Nằm VIP', N'43A-78901', 34, N'Giường nằm VIP'),
+(N'Xe Limousine VIP', N'43A-89012', 18, N'Limousine VIP'),
+(N'Xe Du Lịch', N'92B-90123', 29, N'Xe du lịch'),
+(N'Xe Hợp Đồng', N'92B-01234', 35, N'Hợp đồng');
+
+// dữ liệu bảng dbo.tuyenxe
+INSERT INTO tuyenxe (khoihanh, diemden, khoangcach, thoigiandichuyen)
+VALUES
+(N'Hà Nội', N'Đà Nẵng', 764.5, 720),
+(N'Hà Nội', N'Hải Phòng', 120.0, 150),
+(N'Hà Nội', N'Sapa', 320.0, 360),
+(N'TP.HCM', N'Cần Thơ', 170.0, 210),
+(N'TP.HCM', N'Vũng Tàu', 95.0, 120),
+(N'Đà Nẵng', N'Huế', 100.0, 150),
+(N'Đà Nẵng', N'Quảng Ngãi', 135.0, 180),
+(N'Cần Thơ', N'An Giang', 120.0, 150),
+(N'Huế', N'Quảng Bình', 165.0, 210),
+(N'Hải Phòng', N'Hà Giang', 480.0, 600);
+
+// dữ liệu bảng dbo.lichtrinh
+INSERT INTO lichtrinh (xeid, tuyenid, thoigiankhoihanh, thoigianden, soghetrong, giave)
+VALUES
+(1, 1, '2025-01-10 07:00:00', '2025-01-10 19:00:00', 40, 500000),
+(2, 1, '2025-01-10 19:00:00', '2025-01-11 07:00:00', 40, 520000),
+
+(3, 2, '2025-01-11 08:00:00', '2025-01-11 10:30:00', 45, 120000),
+(4, 3, '2025-01-11 06:00:00', '2025-01-11 12:00:00', 40, 300000),
+
+(5, 4, '2025-01-12 09:00:00', '2025-01-12 13:00:00', 45, 180000),
+
+(1, 5, '2025-01-13 06:30:00', '2025-01-13 09:00:00', 40, 150000);
+
+// dữ liệu bảng dbo.nguoidung
+INSERT INTO nguoidung
+(hoten, ngaysinh, sdt, email, taikhoan, matkhau, vaitro)
+VALUES
+(N'Nguyễn Văn A', '1995-03-12', '0901234567', 'a@gmail.com', 'nguyenvana', '123456', N'KHÁCH'),
+(N'Trần Thị B', '1998-07-25', '0912345678', 'b@gmail.com', 'tranthib', '123456', N'KHÁCH'),
+(N'Lê Văn C', '1990-11-05', '0923456789', 'c@gmail.com', 'levanc', '123456', N'KHÁCH'),
+(N'Phạm Thị D', '1997-02-18', '0934567890', 'd@gmail.com', 'phamthid', '123456', N'KHÁCH'),
+(N'Hoàng Văn E', '1988-09-30', '0945678901', 'e@gmail.com', 'hoangvane', '123456', N'ADMIN');
+
+// dữ liệu bảng dbo.vexe
+INSERT INTO vexe
+(nguoidungid, lichid, vitrighe, thoigiandat, trangthai)
+VALUES
+(1, 1, N'A1', GETDATE(), N'ĐÃ ĐẶT'),
+(2, 1, N'A2', GETDATE(), N'ĐÃ ĐẶT'),
+(3, 2, N'B1', GETDATE(), N'ĐÃ ĐẶT'),
+(4, 2, N'B2', GETDATE(), N'ĐÃ ĐẶT'),
+(5, 3, N'C1', GETDATE(), N'ĐÃ ĐẶT'),
+(1, 4, N'D1', GETDATE(), N'ĐÃ ĐẶT'),
+(2, 4, N'D2', GETDATE(), N'ĐÃ ĐẶT');
