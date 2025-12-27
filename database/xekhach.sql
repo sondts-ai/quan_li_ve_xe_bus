@@ -211,10 +211,13 @@ VALUES
 INSERT INTO vexe
 (nguoidungid, lichid, vitrighe, thoigiandat, trangthai)
 VALUES
+-- Lịch dùng xe 16 chỗ → ghế A
 (1, 1, N'A1', GETDATE(), N'ĐÃ ĐẶT'),
 (2, 1, N'A2', GETDATE(), N'ĐÃ ĐẶT'),
 (3, 2, N'A3', GETDATE(), N'ĐÃ ĐẶT'),
 (4, 2, N'A4', GETDATE(), N'ĐÃ ĐẶT'),
-(5, 3, N'A5', GETDATE(), N'ĐÃ ĐẶT'),
-(1, 4, N'A6', GETDATE(), N'ĐÃ ĐẶT'),
-(2, 4, N'A7', GETDATE(), N'ĐÃ ĐẶT');
+
+-- Lịch dùng xe 30 chỗ → ghế B
+(5, 3, N'B1', GETDATE(), N'ĐÃ ĐẶT'),
+(1, 4, N'B2', GETDATE(), N'ĐÃ ĐẶT'),
+(2, 4, N'B3', GETDATE(), N'ĐÃ ĐẶT');
