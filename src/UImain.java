@@ -1,0 +1,50 @@
+import model.NguoiDung;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class UImain {
+    private JPanel panel_UImain;
+    private JPanel title_panel;
+    private JButton button_order;
+    private JButton button_findbus;
+    private JButton button_infoUser;
+    private JLabel lable_nameuser;
+
+    Main main;
+    NguoiDung nguoiDung;
+
+    public  JPanel getPanel_UImain()
+    {
+        return panel_UImain;
+    }
+
+    public UImain(Main main,NguoiDung nguoiDung) {
+        this.nguoiDung = nguoiDung;
+        this.main = main;
+        String nameuser = nguoiDung.getHoTen();
+        lable_nameuser.setText("chào : " + nameuser);
+
+        button_order.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            main.switchPage("formInforTicket");
+            }
+        });
+        button_findbus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.switchPage("formFinBus");
+            }
+        });
+        button_infoUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.switchPage("formInfor");
+            }
+        });
+
+
+    }
+}
