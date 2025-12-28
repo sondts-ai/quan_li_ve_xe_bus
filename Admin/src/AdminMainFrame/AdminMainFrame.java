@@ -1,0 +1,140 @@
+package AdminMainFrame;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.List;
+import service.NguoiDungService;
+import model.NguoiDung;
+
+public class AdminMainFrame extends JFrame{
+    private JPanel MainPanel;
+    private JPanel adminPanel;
+    private JTable tblUserList;
+    private JTextField txtID;
+    private JButton btnOpenManageBus;
+    private JButton btnOpenManageRoute;
+    private JButton btnOpenReport;
+    private JButton btnTimkiem;
+    private JTextField txtSoLuong;
+    private JTextField txtHoTen;
+    private JTextField txtNgaySinh;
+    private JTextField txtSDT;
+    private JTextField txtEmail;
+    private JTextField txtTaiKhoan;
+    private JPasswordField txtPassword;
+    private JTextField txtVaitro;
+    private DefaultTableModel model;
+
+    private NguoiDungService service = new NguoiDungService();
+
+    public AdminMainFrame() {
+        setTitle("Hệ thống Quản lý người dùng");
+        setContentPane(MainPanel);
+        setSize(700, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        initTable();
+        disableFields();
+        loadDataToTable(); // Nạp dữ liệu qua Service ngay khi mở app
+
+        // 1. XỬ LÝ NÚT TÌM KIẾM DÙNG SERVICE
+        btnTimkiem.addActionListener(e -> {
+            String idStr = txtID.getText().trim();
+            if (idStr.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Hãy nhập ID để tìm!");
+                return;
+            }
+            try {
+                int id = Integer.parseInt(idStr);
+                // Gọi hàm tìm kiếm từ Service
+                NguoiDung nd = service.timTheoId(id);
+                if (nd != null) {
+                    // Đổ dữ liệu vào các ô Text
+                    txtHoTen.setText(nd.getHoTen());
+                    txtNgaySinh.setText(nd.getNgaySinh() != null ? nd.getNgaySinh().toString() : "");
+                    txtSDT.setText(nd.getSdt());
+                    txtEmail.setText(nd.getEmail());
+                    txtTaiKhoan.setText(nd.getTaiKhoan());
+                    txtPassword.setText(nd.getMatKhau());
+                    txtVaitro.setText(nd.getVaiTro());
+                    // Tự động highlight dòng đó trên Table
+                    for (int i = 0; i < model.getRowCount(); i++) {
+                        if (model.getValueAt(i, 0).toString().equals(idStr)) {
+                            tblUserList.setRowSelectionInterval(i, i);
+                            break;
+                        }
+                    }
+                } else {
+                    clearDetails();
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy người dùng có ID là: " + idStr);
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "ID phải là số nguyên!");
+            }
+        });
+
+        // 2. CHUYỂN UI SANG CÁC FORM KHÁC
+        btnOpenManageBus.addActionListener(e -> {
+            new ManageBusFrame.ManageBusFrame().setVisible(true);
+            dispose();
+        });
+        btnOpenManageRoute.addActionListener(e -> {
+            new ManageRouteFrame.ManageRouteFrame().setVisible(true);
+            dispose();
+        });
+        btnOpenReport.addActionListener(e -> {
+            new ReportFrame.ReportFrame().setVisible(true);
+            dispose();
+        });
+    }
+    // Nạp dữ liệu từ Service đổ vào JTable
+    private void loadDataToTable() {
+        model.setRowCount(0);
+        // Gọi Service lấy danh sách thay vì mở Connection JDBC
+        List<NguoiDung> dsnd = service.layTatCaNguoiDung();
+        for (NguoiDung nd : dsnd) {
+            model.addRow(new Object[]{
+                    nd.getNguoiDungId(),
+                    nd.getHoTen(),
+                    nd.getNgaySinh(),
+                    nd.getSdt(),
+                    nd.getEmail(),
+                    nd.getTaiKhoan(),
+                    nd.getMatKhau(),
+                    nd.getVaiTro()
+            });
+        }
+        // Hiện tổng số lượng tài khoản
+        txtSoLuong.setText(String.valueOf(dsnd.size()));
+    }
+
+    private void initTable() {
+        String[] columns = {"ID", "Họ tên", "Ngày sinh", "SĐT", "Email", "Tài khoản", "Mật khẩu", "Vai trò"};
+        model = new DefaultTableModel(columns, 0);
+        tblUserList.setModel(model);
+        // Chặn không cho Admin click đúp sửa trực tiếp trên bảng
+        tblUserList.setDefaultEditor(Object.class, null);
+    }
+
+    private void disableFields() {
+        JTextField[] fields = {txtSoLuong, txtHoTen, txtNgaySinh, txtSDT, txtEmail, txtTaiKhoan, txtVaitro};
+        for (JTextField f : fields) {
+            f.setEditable(false);
+            f.setBackground(new Color(235, 235, 235)); // Màu xám nhạt báo hiệu bị khóa
+        }
+        txtPassword.setEditable(false);
+        txtPassword.setBackground(new Color(235, 235, 235));
+    }
+
+    private void clearDetails() {
+        txtHoTen.setText(""); txtNgaySinh.setText(""); txtSDT.setText("");
+        txtEmail.setText(""); txtTaiKhoan.setText(""); txtPassword.setText(""); txtVaitro.setText("");
+    }
+    //Hàm main
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new AdminMainFrame().setVisible(true);
+        });
+    }
+}
