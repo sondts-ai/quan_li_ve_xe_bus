@@ -39,6 +39,7 @@ public class ReportFrame extends JFrame {
         loadOverallTotal();
         btnThongKe.addActionListener(e -> loadFilteredData());
         btnBack.addActionListener(e -> {
+            new AdminMainFrame.AdminMainFrame().setVisible(true);
             dispose();
         });
     }
