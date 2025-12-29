@@ -1,5 +1,3 @@
-package AdminMainFrame;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -36,9 +34,8 @@ public class AdminMainFrame extends JFrame{
         setLocationRelativeTo(null);
         initTable();
         disableFields();
-        loadDataToTable(); // Nạp dữ liệu qua Service ngay khi mở app
+        loadDataToTable();
 
-        // 1. XỬ LÝ NÚT TÌM KIẾM DÙNG SERVICE
         btnTimkiem.addActionListener(e -> {
             String idStr = txtID.getText().trim();
             if (idStr.isEmpty()) {
@@ -47,7 +44,6 @@ public class AdminMainFrame extends JFrame{
             }
             try {
                 int id = Integer.parseInt(idStr);
-                // Gọi hàm tìm kiếm từ Service
                 NguoiDung nd = service.timTheoId(id);
                 if (nd != null) {
                     // Đổ dữ liệu vào các ô Text
@@ -58,7 +54,7 @@ public class AdminMainFrame extends JFrame{
                     txtTaiKhoan.setText(nd.getTaiKhoan());
                     txtPassword.setText(nd.getMatKhau());
                     txtVaitro.setText(nd.getVaiTro());
-                    // Tự động highlight dòng đó trên Table
+                    // Tự highlight dòng đó trên Table
                     for (int i = 0; i < model.getRowCount(); i++) {
                         if (model.getValueAt(i, 0).toString().equals(idStr)) {
                             tblUserList.setRowSelectionInterval(i, i);
@@ -74,24 +70,22 @@ public class AdminMainFrame extends JFrame{
             }
         });
 
-        // 2. CHUYỂN UI SANG CÁC FORM KHÁC
         btnOpenManageBus.addActionListener(e -> {
-            new ManageBusFrame.ManageBusFrame().setVisible(true);
+            new ManageBusFrame().setVisible(true);
             dispose();
         });
         btnOpenManageRoute.addActionListener(e -> {
-            new ManageRouteFrame.ManageRouteFrame().setVisible(true);
+            new ManageRouteFrame().setVisible(true);
             dispose();
         });
         btnOpenReport.addActionListener(e -> {
-            new ReportFrame.ReportFrame().setVisible(true);
+            new ReportFrame().setVisible(true);
             dispose();
         });
     }
-    // Nạp dữ liệu từ Service đổ vào JTable
     private void loadDataToTable() {
         model.setRowCount(0);
-        // Gọi Service lấy danh sách thay vì mở Connection JDBC
+        // Gọi Service lấy danh sách
         List<NguoiDung> dsnd = service.layTatCaNguoiDung();
         for (NguoiDung nd : dsnd) {
             model.addRow(new Object[]{
@@ -131,7 +125,6 @@ public class AdminMainFrame extends JFrame{
         txtHoTen.setText(""); txtNgaySinh.setText(""); txtSDT.setText("");
         txtEmail.setText(""); txtTaiKhoan.setText(""); txtPassword.setText(""); txtVaitro.setText("");
     }
-    //Hàm main
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new AdminMainFrame().setVisible(true);

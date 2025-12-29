@@ -1,5 +1,3 @@
-package ManageRouteFrame;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -44,7 +42,6 @@ public class ManageRouteFrame extends JFrame {
         cboDiemKhoiHanh.addActionListener(e -> filterRoutes());
         cboDiemden.addActionListener(e -> filterRoutes());
 
-        // LUỒNG 2: Chọn ID cụ thể để hiện chi tiết
         cboIDTuyen.addActionListener(e -> {
             String selectedID = (String) cboIDTuyen.getSelectedItem();
             if (selectedID != null && !selectedID.equals("Chọn ID") && cboIDTuyen.isEnabled()) {
@@ -76,16 +73,13 @@ public class ManageRouteFrame extends JFrame {
                 int phut = Integer.parseInt(txtTimeChay.getText().trim());
 
                 if (txtMaTuyen.getText().equals("")) {
-                    // LƯU MỚI VÀO DB
                     TuyenXe tx = new TuyenXe(di, den, km, phut);
                     JOptionPane.showMessageDialog(this, tuyenXeService.them(tx));
                 } else {
-                    // CẬP NHẬT VÀO DB
                     int id = Integer.parseInt(txtMaTuyen.getText());
                     TuyenXe tx = new TuyenXe(id, di, den, km, phut);
                     JOptionPane.showMessageDialog(this, tuyenXeService.capNhat(tx));
                 }
-                // KHÔNG gọi loadDataFromDatabase()
                 resetToDefault();
                 JOptionPane.showMessageDialog(this, "Dữ liệu đã lưu!");
             } catch (Exception ex) {
@@ -103,7 +97,6 @@ public class ManageRouteFrame extends JFrame {
             if (choice == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(this, tuyenXeService.xoa(Integer.parseInt(idStr)));
                 resetToDefault();
-                // KHÔNG load lại bảng
             }
         });
 
@@ -114,7 +107,7 @@ public class ManageRouteFrame extends JFrame {
             JOptionPane.showMessageDialog(this, "Tải dữ liệu thành công!");
         });
         btnBack.addActionListener(e -> {
-            new AdminMainFrame.AdminMainFrame().setVisible(true);
+            new AdminMainFrame().setVisible(true);
             dispose();
         });
     }

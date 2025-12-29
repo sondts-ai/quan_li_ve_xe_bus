@@ -1,5 +1,3 @@
-package ManageBusFrame;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -115,7 +113,6 @@ public class ManageBusFrame extends JFrame{
                 txtTenLoaiXe.setText(found.getTenXe());
                 cboLoaiXe.setSelectedItem(found.getLoaiXe());
                 for (int i = 0; i < tblBusList.getRowCount(); i++) {
-                    // Cột 0 là ID xe
                     if (tblBusList.getValueAt(i, 0).toString().equals(idSearch)) {
                         // Chọn dòng i
                         tblBusList.setRowSelectionInterval(i, i);
@@ -160,7 +157,7 @@ public class ManageBusFrame extends JFrame{
                 try {
                     int id = Integer.parseInt(idStr);
                     JOptionPane.showMessageDialog(this, xeService.xoa(id));
-                    resetToDefault(); // Xóa trắng form
+                    resetToDefault();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, "Lỗi khi xóa: " + ex.getMessage());
                 }
@@ -196,7 +193,7 @@ public class ManageBusFrame extends JFrame{
             JOptionPane.showMessageDialog(this, "Tải dữ liệu thành công!");
         });
         btnBack.addActionListener(e ->{
-            new AdminMainFrame.AdminMainFrame().setVisible(true);
+            new AdminMainFrame().setVisible(true);
         dispose();
         });
     }

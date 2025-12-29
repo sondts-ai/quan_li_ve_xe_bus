@@ -1,9 +1,5 @@
-package ReportFrame;
-
-import ManageRouteFrame.ManageRouteFrame;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +35,7 @@ public class ReportFrame extends JFrame {
         loadOverallTotal();
         btnThongKe.addActionListener(e -> loadFilteredData());
         btnBack.addActionListener(e -> {
-            new AdminMainFrame.AdminMainFrame().setVisible(true);
+            new AdminMainFrame().setVisible(true);
             dispose();
         });
     }
