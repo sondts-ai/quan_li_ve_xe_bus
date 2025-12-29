@@ -112,16 +112,13 @@ public class ManageBusFrame extends JFrame{
                 txtSoGhe.setText(String.valueOf(found.getTongGhe()));
                 txtTenLoaiXe.setText(found.getTenXe());
                 cboLoaiXe.setSelectedItem(found.getLoaiXe());
+
                 for (int i = 0; i < tblBusList.getRowCount(); i++) {
                     if (tblBusList.getValueAt(i, 0).toString().equals(idSearch)) {
-                        // Chọn dòng i
                         tblBusList.setRowSelectionInterval(i, i);
-                        // Cuộn camera đến dòng i (để lỡ danh sách dài quá vẫn nhìn thấy)
-                        tblBusList.scrollRectToVisible(tblBusList.getCellRect(i, 0, true));
                         break;
                     }
                 }
-                // gọi hàm hiển thị ghế
                 showSeatMap(found.getTongGhe(), idSearch);
                 disableFields();
             } else {
@@ -129,7 +126,7 @@ public class ManageBusFrame extends JFrame{
                 resetToDefault();
             }
         });
-        // tự nhảy số ghế
+
         cboLoaiXe.addActionListener(e -> {
             if ("ADD".equals(currentAction)) {
                 String selected = (String) cboLoaiXe.getSelectedItem();
@@ -206,14 +203,12 @@ public class ManageBusFrame extends JFrame{
         else { cl.show(panelGhe, "cardTrong"); }
 
         if (activePanel != null) {
-            // Reset tất cả về xanh trước
             for (Component comp : activePanel.getComponents()) {
                 if (comp instanceof JButton) comp.setBackground(Color.GREEN);
             }
             try {
                 int xId = Integer.parseInt(idXe);
                 int lId = -1;
-                // 1. Tìm lichid từ xeid thông qua service
                 List<LichTrinh> dsLich = lichTrinhService.getAllLichTrinh();
                 for (LichTrinh lt : dsLich) {
                     if (lt.getXeId() == xId) {
@@ -221,7 +216,6 @@ public class ManageBusFrame extends JFrame{
                         break; // Lấy chuyến đầu tiên tìm thấy
                     }
                 }
-                // 2. Nếu tìm thấy lịch trình, lấy ghế đã đặt từ VeXeService
                 if (lId != -1) {
                     List<String> booked = veXeService.getGheDaDat(lId);
                     for (Component comp : activePanel.getComponents()) {
@@ -229,7 +223,6 @@ public class ManageBusFrame extends JFrame{
                             JButton btn = (JButton) comp;
                             String seatNum = btn.getText();
                             for (String b : booked) {
-                                // Lọc bỏ A/B để so khớp số
                                 if (b.replaceAll("[^0-9]", "").equals(seatNum)) {
                                     btn.setBackground(Color.RED);
                                     break;

@@ -46,7 +46,6 @@ public class AdminMainFrame extends JFrame{
                 int id = Integer.parseInt(idStr);
                 NguoiDung nd = service.timTheoId(id);
                 if (nd != null) {
-                    // Đổ dữ liệu vào các ô Text
                     txtHoTen.setText(nd.getHoTen());
                     txtNgaySinh.setText(nd.getNgaySinh() != null ? nd.getNgaySinh().toString() : "");
                     txtSDT.setText(nd.getSdt());
@@ -54,7 +53,7 @@ public class AdminMainFrame extends JFrame{
                     txtTaiKhoan.setText(nd.getTaiKhoan());
                     txtPassword.setText(nd.getMatKhau());
                     txtVaitro.setText(nd.getVaiTro());
-                    // Tự highlight dòng đó trên Table
+
                     for (int i = 0; i < model.getRowCount(); i++) {
                         if (model.getValueAt(i, 0).toString().equals(idStr)) {
                             tblUserList.setRowSelectionInterval(i, i);
@@ -85,7 +84,6 @@ public class AdminMainFrame extends JFrame{
     }
     private void loadDataToTable() {
         model.setRowCount(0);
-        // Gọi Service lấy danh sách
         List<NguoiDung> dsnd = service.layTatCaNguoiDung();
         for (NguoiDung nd : dsnd) {
             model.addRow(new Object[]{
@@ -99,7 +97,6 @@ public class AdminMainFrame extends JFrame{
                     nd.getVaiTro()
             });
         }
-        // Hiện tổng số lượng tài khoản
         txtSoLuong.setText(String.valueOf(dsnd.size()));
     }
 
@@ -107,7 +104,7 @@ public class AdminMainFrame extends JFrame{
         String[] columns = {"ID", "Họ tên", "Ngày sinh", "SĐT", "Email", "Tài khoản", "Mật khẩu", "Vai trò"};
         model = new DefaultTableModel(columns, 0);
         tblUserList.setModel(model);
-        // Chặn không cho Admin click đúp sửa trực tiếp trên bảng
+        // Không cho Admin sửa trực tiếp trên bảng
         tblUserList.setDefaultEditor(Object.class, null);
     }
 

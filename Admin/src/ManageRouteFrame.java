@@ -101,8 +101,8 @@ public class ManageRouteFrame extends JFrame {
         });
 
         btnLoad.addActionListener(e -> {
-            loadDataFromDatabase(); // Đổ dữ liệu từ DB lên Table
-            initComboBoxData();     // Cập nhật lại ComboBox tỉnh thành
+            loadDataFromDatabase();
+            initComboBoxData();
             resetToDefault();
             JOptionPane.showMessageDialog(this, "Tải dữ liệu thành công!");
         });
@@ -121,7 +121,6 @@ public class ManageRouteFrame extends JFrame {
     }
 
     private void initComboBoxData() {
-        // Tắt Listener tạm thời để tránh loop khi add item
         cboDiemKhoiHanh.setEnabled(false);
         cboDiemden.setEnabled(false);
         cboDiemKhoiHanh.removeAllItems();
@@ -187,7 +186,7 @@ public class ManageRouteFrame extends JFrame {
         txtDiemden.setText(model.getValueAt(rowIndex, 2).toString());
         txtKhoangCach.setText(model.getValueAt(rowIndex, 3).toString());
         txtTimeChay.setText(model.getValueAt(rowIndex, 4).toString());
-        tblRouteList.setRowSelectionInterval(rowIndex, rowIndex); // Bôi xanh dòng
+        tblRouteList.setRowSelectionInterval(rowIndex, rowIndex);
         enableFields(false);
     }
 
