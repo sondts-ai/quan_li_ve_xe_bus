@@ -26,7 +26,6 @@ public class UIInforTicket {
     public JPanel getPanelMain_Inforticket() {
         return panelMain_Inforticket;
     }
-
     public UIInforTicket(Main main)
     {
         this.main = main;
@@ -46,7 +45,6 @@ public class UIInforTicket {
                     .getModel()
                     .getValueAt(modelRow, 0); // ⭐ cột ID
         });
-
         button_return.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +74,6 @@ public class UIInforTicket {
             }
         });
     }
-
     public void loadTicketsByUserId(int userId) {
         // Xóa dữ liệu cũ
         routeModel1.setRowCount(0);
@@ -95,5 +92,4 @@ public class UIInforTicket {
             });
         }
     }
-
 }

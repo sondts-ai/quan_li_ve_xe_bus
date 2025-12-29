@@ -29,14 +29,11 @@ public class UIFixInfor {
     private JButton button_agree;
     NguoiDungService nguoiDungService = new NguoiDungService();
     Main main;
-
     public JPanel getPanelMain_FixInfor() {
         return panelMain_FixInfor;
     }
-
     public UIFixInfor(Main main) {
         this.main = main;
-
         button_agree.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,19 +47,15 @@ public class UIFixInfor {
             }
         });
     }
-
     private void updateUserInfo() {
         String name = textField_name.getText().trim();
         String birth = textField_birth.getText().trim();
         String phone = textField_numbertele.getText().trim();
         String gmail = textField_Gmail.getText().trim();
-
-        // Kiểm tra dữ liệu nhập liệu
         if(name.isEmpty() || birth.isEmpty() || phone.isEmpty() || gmail.isEmpty()) {
             JOptionPane.showMessageDialog(panelMain_FixInfor, "Vui lòng điền đầy đủ thông tin!");
             return;
         }
-        // xử lý ngày
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
 
@@ -77,8 +70,6 @@ public class UIFixInfor {
             );
             return;
         }
-
-        // Cập nhật thông tin người dùng
         Auth.user.setHoTen(name);
         Auth.user.setNgaySinh(ngaysinh);
         Auth.user.setSdt(phone);
@@ -87,7 +78,6 @@ public class UIFixInfor {
         JOptionPane.showMessageDialog(panelMain_FixInfor, "Cập nhật thông tin thành công!");
         main.switchPage("formUImain");
     }
-
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }

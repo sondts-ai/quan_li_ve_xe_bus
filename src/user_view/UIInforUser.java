@@ -19,7 +19,6 @@ public class UIInforUser {
     private JLabel lable_numbertele;
     private JLabel lable_gmail;
     private JPanel title_panel;
-
     Main main;
     NguoiDung nguoiDung;
     public JPanel getPanel_inforMain()
@@ -46,7 +45,6 @@ public class UIInforUser {
                 main.switchPage("formUImain");
             }
         });
-
     }
     public void loadData() {
         if (nguoiDung != null) {

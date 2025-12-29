@@ -25,9 +25,7 @@ public class AdminMainFrame extends JFrame{
     private JPasswordField txtPassword;
     private JTextField txtVaitro;
     private DefaultTableModel model;
-
     private NguoiDungService service = new NguoiDungService();
-
     public AdminMainFrame() {
         setTitle("Hệ thống Quản lý người dùng");
         setContentPane(MainPanel);
@@ -37,7 +35,6 @@ public class AdminMainFrame extends JFrame{
         initTable();
         disableFields();
         loadDataToTable();
-
         btnTimkiem.addActionListener(e -> {
             String idStr = txtID.getText().trim();
             if (idStr.isEmpty()) {
@@ -70,7 +67,6 @@ public class AdminMainFrame extends JFrame{
                 JOptionPane.showMessageDialog(this, "ID phải là số nguyên!");
             }
         });
-
         btnOpenManageBus.addActionListener(e -> {
             new ManageBusFrame().setVisible(true);
             dispose();
@@ -109,7 +105,6 @@ public class AdminMainFrame extends JFrame{
         // Không cho Admin sửa trực tiếp trên bảng
         tblUserList.setDefaultEditor(Object.class, null);
     }
-
     private void disableFields() {
         JTextField[] fields = {txtSoLuong, txtHoTen, txtNgaySinh, txtSDT, txtEmail, txtTaiKhoan, txtVaitro};
         for (JTextField f : fields) {
@@ -119,14 +114,8 @@ public class AdminMainFrame extends JFrame{
         txtPassword.setEditable(false);
         txtPassword.setBackground(new Color(235, 235, 235));
     }
-
     private void clearDetails() {
         txtHoTen.setText(""); txtNgaySinh.setText(""); txtSDT.setText("");
         txtEmail.setText(""); txtTaiKhoan.setText(""); txtPassword.setText(""); txtVaitro.setText("");
     }
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            new AdminMainFrame().setVisible(true);
-//        });
-//    }
 }

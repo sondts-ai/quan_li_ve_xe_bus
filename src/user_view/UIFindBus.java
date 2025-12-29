@@ -28,37 +28,27 @@ public class UIFindBus {
     Main main;
     Integer numberchair;
 
-
-
     private TuyenXeService tuyenXeService = new TuyenXeService();
     private LichTrinhService lichTrinhService = new LichTrinhService();
     private XeService xeService = new XeService();
     DefaultTableModel routeModel1 = new DefaultTableModel(
             new Object[]{"thứ tự","Điểm khởi hành", "Điểm đến","thời gian di chuyển","khoảng cách"}, 0);
-
     DefaultTableModel routeModel_carTrip = new DefaultTableModel(
             new Object[]{"mã chuyến xe","thời gian khởi hành", "thời gian đến"}, 0);
-
-
-
     public UIFindBus(Main main) {
 
           this.main = main;
           table_busRoute.setModel(routeModel1);
           table_carTrip.setModel(routeModel_carTrip);
           loadTableTuyenXe();
-
-
         button_return.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main.switchPage("formUImain");
             }
         });
-
         table_busRoute.getSelectionModel().addListSelectionListener(e -> { // hàm event routetable
             if (e.getValueIsAdjusting()) return; // tránh gọi 2 lần
-
             int viewRow = table_busRoute.getSelectedRow();
             if (viewRow == -1) return;
 
@@ -68,15 +58,11 @@ public class UIFindBus {
             int tuyenId = (int) table_busRoute
                     .getModel()
                     .getValueAt(modelRow, 0); // ⭐ cột ID
-
-
             loadTablechuyenxe(tuyenId);
             System.out.println("Dòng được chọn, ID = " + tuyenId);
         });
-
         table_carTrip.getSelectionModel().addListSelectionListener(e -> { // hàm event routetable
             if (e.getValueIsAdjusting()) return; // tránh gọi 2 lần
-
             int viewRow = table_carTrip.getSelectedRow();
             if (viewRow == -1) return;
 
@@ -86,13 +72,10 @@ public class UIFindBus {
             int lichid = (int) table_carTrip
                     .getModel()
                     .getValueAt(modelRow, 0); // ⭐ cột ID
-
-
             showInforCarTrip(lichid);
             System.out.println("Dòng được chọn, ID = " + lichid);
         });
     }
-
     private void loadTableTuyenXe() {
         routeModel1.setRowCount(0); // clear dữ liệu cũ
 
@@ -107,7 +90,6 @@ public class UIFindBus {
             });
         }
     }
-
     private void loadTablechuyenxe(Integer id) {
         routeModel_carTrip.setRowCount(0); // clear dữ liệu cũ
 
@@ -120,8 +102,6 @@ public class UIFindBus {
             });
         }
     }
-
-
     public JPanel getPanelMain_findBus() {
         return panelMain_findBus;
     }
@@ -136,25 +116,17 @@ public class UIFindBus {
                 " Thông tin chuyến xe",
                 true
         );
-        UIDialogShowCartrip16 uiDialogShowCartrip = new UIDialogShowCartrip16(main,lichid,dialog);
-        UIDialogShowCartrip30 uiDialogShowCartrip30 = new UIDialogShowCartrip30(main,lichid,dialog);
+        UIDialogShowCartrip16 uiDialogShowCartrip = new UIDialogShowCartrip16(main, lichid, dialog);
+        UIDialogShowCartrip30 uiDialogShowCartrip30 = new UIDialogShowCartrip30(main, lichid, dialog);
 
-        if(tongghe == 16)
-        {
+        if (tongghe == 16) {
             dialog.setContentPane(uiDialogShowCartrip.getPanelMain_showCartrip());
-        }
-        else
-        {
+        } else {
             dialog.setContentPane(uiDialogShowCartrip30.getPanelMain_showCartrip());
         }
         dialog.setLocationRelativeTo(main.getFrame());
         dialog.pack();
+        dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
-// ⭐ DÒNG QUYẾT ĐỊNH
-
     }
-
-
-
-
 }

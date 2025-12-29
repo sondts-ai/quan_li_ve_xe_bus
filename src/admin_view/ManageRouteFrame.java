@@ -30,9 +30,7 @@ public class ManageRouteFrame extends JFrame {
     private JComboBox cboDiemden;
     private JComboBox cboIDTuyen;
     private DefaultTableModel model;
-
     private TuyenXeService tuyenXeService = new TuyenXeService();
-
     public ManageRouteFrame() {
         setTitle("Quản lý tuyến xe");
         setContentPane(MainPanel);
@@ -44,7 +42,6 @@ public class ManageRouteFrame extends JFrame {
         resetToDefault();
         cboDiemKhoiHanh.addActionListener(e -> filterRoutes());
         cboDiemden.addActionListener(e -> filterRoutes());
-
         cboIDTuyen.addActionListener(e -> {
             String selectedID = (String) cboIDTuyen.getSelectedItem();
             if (selectedID != null && !selectedID.equals("Chọn ID") && cboIDTuyen.isEnabled()) {
@@ -56,14 +53,12 @@ public class ManageRouteFrame extends JFrame {
                 }
             }
         });
-
         btnAdd.addActionListener(e -> {
             clearFields();
             enableFields(true);
             txtMaTuyen.setText("");
             txtDiemKhoiHanh.requestFocus();
         });
-
         btnUpdate.addActionListener(e -> {
             if (!txtMaTuyen.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Lỗi!");
@@ -89,7 +84,6 @@ public class ManageRouteFrame extends JFrame {
                 JOptionPane.showMessageDialog(this, "Không đủ điều kiện hoặc không có gì để Update!");
             }
         });
-
         btnDelete.addActionListener(e -> {
             String idStr = txtMaTuyen.getText();
             if (idStr.isEmpty() || idStr.equals("Tự động")) {

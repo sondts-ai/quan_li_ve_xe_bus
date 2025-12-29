@@ -48,7 +48,7 @@ public class UIDialogShowCartrip16 {
     }
 
     DefaultTableModel cartripmodel = new DefaultTableModel(
-            new Object[]{"thứ tự","mã xe", "mã tuyến","thời gian đi","thời gian đến","số ghế trống","giá vé"}, 0);
+            new Object[]{"thứ tự","mã xe","thời gian đi","thời gian đến","giá vé"}, 0);
 
     public UIDialogShowCartrip16(Main main, Integer idchuyen, JDialog dialog){
             this.main = main;
@@ -170,7 +170,6 @@ public class UIDialogShowCartrip16 {
             }
         });
     }
-
     private void bookTicket(int lichid)  // hàm đặt vé
     {
         VeXeService veXeService = new VeXeService();
@@ -179,7 +178,6 @@ public class UIDialogShowCartrip16 {
         System.out.println("ghe được chọn: "+idCharChoose +"iduser:" + iduser +"lichtrinh:"+lichid);
         veXeService.datVe(iduser,lichid,idCharChoose);
     }
-
     private void loadTripDetail(int lichId) {
         cartripmodel.setRowCount(0); // clear bảng mới
 
@@ -188,10 +186,8 @@ public class UIDialogShowCartrip16 {
             cartripmodel.addRow(new Object[]{
                     lt.getLichId(),
                     lt.getXeId(),
-                    lt.getTuyenId(),
                     lt.getThoiGianKhoiHanh(),
                     lt.getThoiGianDen(),
-                    lt.getSoGheTrong(),
                     lt.getGiaVe()
             });
         }
@@ -221,8 +217,6 @@ public class UIDialogShowCartrip16 {
         disableIfBooked(button15a, "D3", gheDaDat);
         disableIfBooked(button16a, "D4", gheDaDat);
     }
-
-
     private void disableIfBooked(JButton btn, String seatName, List<String> bookedList) {
 
         if (bookedList.contains(seatName)) {

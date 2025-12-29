@@ -14,21 +14,17 @@ public class UImain {
     private JButton button_findbus;
     private JButton button_infoUser;
     private JLabel lable_nameuser;
-
     Main main;
     NguoiDung nguoiDung;
-
     public  JPanel getPanel_UImain()
     {
         return panel_UImain;
     }
-
     public UImain(Main main, NguoiDung nguoiDung) {
         this.nguoiDung = nguoiDung;
         this.main = main;
         String nameuser = nguoiDung.getHoTen();
         lable_nameuser.setText("chào : " + nameuser);
-
         button_order.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -51,7 +47,5 @@ public class UImain {
                 main.switchPage("formInfor");
             }
         });
-
-
     }
 }

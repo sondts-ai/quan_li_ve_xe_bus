@@ -83,7 +83,6 @@ public class ManageBusFrame extends JFrame {
     private XeService xeService = new XeService();
     private VeXeService veXeService = new VeXeService();
     private LichTrinhService lichTrinhService = new LichTrinhService();
-
     public ManageBusFrame() {
         UIManager.put("ComboBox.disabledForeground", new Color(80, 80, 80));
         UIManager.put("ComboBox.disabledBackground", new Color(245, 245, 245));
@@ -95,7 +94,6 @@ public class ManageBusFrame extends JFrame {
         initComboBoxData();
         initTable();
         resetToDefault();
-
         btnTimkiem.addActionListener(e -> {
             String idSearch = txtID.getText().trim();
             if (idSearch.isEmpty()) {
@@ -129,7 +127,6 @@ public class ManageBusFrame extends JFrame {
                 resetToDefault();
             }
         });
-
         cboLoaiXe.addActionListener(e -> {
             if ("ADD".equals(currentAction)) {
                 String selected = (String) cboLoaiXe.getSelectedItem();
@@ -145,7 +142,6 @@ public class ManageBusFrame extends JFrame {
             currentAction = "ADD";
             txtTenLoaiXe.requestFocus();
         });
-
         btnDelete.addActionListener(e -> {
             String idStr = txtIDxe.getText().trim();
             if (idStr.isEmpty()) {
@@ -163,7 +159,6 @@ public class ManageBusFrame extends JFrame {
                 }
             }
         });
-
         btnUpdate.addActionListener(e -> {
             if (!txtIDxe.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Lỗi!");
@@ -186,7 +181,6 @@ public class ManageBusFrame extends JFrame {
                 JOptionPane.showMessageDialog(this, "Lỗi nhập liệu!");
             }
         });
-
         btnLoad.addActionListener(e -> {
             loadDataFromDatabase();
             resetToDefault();
@@ -197,7 +191,6 @@ public class ManageBusFrame extends JFrame {
             dispose();
         });
     }
-
     private void showSeatMap(int soGhe, String idXe) {
         CardLayout cl = (CardLayout) panelGhe.getLayout();
         JPanel activePanel = null;
@@ -245,13 +238,11 @@ public class ManageBusFrame extends JFrame {
             }
         }
     }
-
     private void resetToDefault() {
         clearFields();
         disableFields();
         currentAction = "";
     }
-
     private void clearFields() {
         txtIDxe.setText("");
         txtBienSo.setText("");
@@ -261,7 +252,6 @@ public class ManageBusFrame extends JFrame {
         cboLoaiXe.setSelectedIndex(-1);
         showSeatMap(0, "");
     }
-
     private void disableFields() {
         txtIDxe.setEditable(false);
         txtBienSo.setEditable(false);
@@ -272,7 +262,6 @@ public class ManageBusFrame extends JFrame {
         txtSoGhe.setBackground(new Color(230, 230, 230));
         txtTenLoaiXe.setBackground(new Color(230, 230, 230));
     }
-
     private void enableFieldsForEditing() {
         txtBienSo.setEditable(true);
         txtTenLoaiXe.setEditable(true);
@@ -280,25 +269,21 @@ public class ManageBusFrame extends JFrame {
         txtTenLoaiXe.setBackground(Color.WHITE);
         cboLoaiXe.setEnabled(true);
     }
-
     private void loadDataFromDatabase() {
         model.setRowCount(0);
         for (Xe x : xeService.getAll()) {
             model.addRow(new Object[]{x.getXeId(), x.getLoaiXe(), x.getTenXe(), x.getBienSo(), x.getTongGhe()});
         }
     }
-
     private void initTable() {
         model = new DefaultTableModel(new String[]{"ID xe", "Loại xe", "Tên loại xe", "Biển số", "Số ghế"}, 0);
         tblBusList.setModel(model);
         tblBusList.setDefaultEditor(Object.class, null);
         loadDataFromDatabase();
     }
-
     private void initComboBoxData() {
         cboLoaiXe.removeAllItems();
         cboLoaiXe.addItem("Limousine");
         cboLoaiXe.addItem("Giường nằm");
     }
-
 }

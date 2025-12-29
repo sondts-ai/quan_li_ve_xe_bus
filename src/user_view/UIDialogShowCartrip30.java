@@ -62,8 +62,7 @@ public class UIDialogShowCartrip30 {
     }
 
     DefaultTableModel cartripmodel = new DefaultTableModel(
-            new Object[]{"thứ tự","mã xe", "mã tuyến","thời gian đi","thời gian đến","số ghế trống","giá vé"}, 0);
-
+            new Object[]{"thứ tự","mã xe","thời gian đi","thời gian đến","giá vé"}, 0);
     public UIDialogShowCartrip30(Main main, Integer idchuyen, JDialog dialog){
         this.main = main;
         this.idLich = idchuyen;
@@ -87,7 +86,6 @@ public class UIDialogShowCartrip30 {
                 }
             }
         });
-
         button_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -270,7 +268,6 @@ public class UIDialogShowCartrip30 {
             }
         });
     }
-
     // 3. Hàm kiểm tra và khóa ghế
     private void checkBookedSeats(int lichId) {
         List<String> gheDaDat = veXeService.getGheDaDat(lichId);
@@ -315,7 +312,6 @@ public class UIDialogShowCartrip30 {
         disableIfBooked(button29a, "E5", gheDaDat);
         disableIfBooked(e6Button,  "E6", gheDaDat);
     }
-
     // 4. Hàm phụ trợ disable nút
     private void disableIfBooked(JButton btn, String seatName, List<String> bookedList) {
         if (btn == null) return; // Tránh lỗi nếu chưa bind nút
@@ -338,7 +334,6 @@ public class UIDialogShowCartrip30 {
 
             veXeService.datVe(iduser,lichid,idCharChoose);
     }
-
     private void loadTripDetail(int lichId) {  // hàm load data
         cartripmodel.setRowCount(0); // clear bảng mới
 
@@ -347,17 +342,10 @@ public class UIDialogShowCartrip30 {
             cartripmodel.addRow(new Object[]{
                     lt.getLichId(),
                     lt.getXeId(),
-                    lt.getTuyenId(),
                     lt.getThoiGianKhoiHanh(),
                     lt.getThoiGianDen(),
-                    lt.getSoGheTrong(),
                     lt.getGiaVe()
             });
         }
-    }
-
-    public void loaddata()
-    {
-        //data lấy từ hàm trả về rs để gă vào table
     }
 }
