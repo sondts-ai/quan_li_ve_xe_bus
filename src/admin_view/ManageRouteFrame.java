@@ -1,0 +1,230 @@
+package admin_view;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.TuyenXe;
+import service.TuyenXeService;
+import java.util.TreeSet;
+import java.util.Set;
+
+public class ManageRouteFrame extends JFrame {
+    private JPanel MainPanel;
+    private JTable tblRouteList;
+    private JTextField txtMaTuyen;
+    private JTextField txtDiemKhoiHanh;
+    private JTextField txtKhoangCach;
+    private JTextField txtTimeChay;
+    private JPanel TieuDe;
+    private JButton btnAdd;
+    private JButton btnUpdate;
+    private JButton btnLoad;
+    private JButton btnDelete;
+    private JButton btnBack;
+    private JTextField txtDiemden;
+    private JTextField txtTongsoTuyen;
+    private JComboBox cboDiemKhoiHanh;
+    private JComboBox cboDiemden;
+    private JComboBox cboIDTuyen;
+    private DefaultTableModel model;
+
+    private TuyenXeService tuyenXeService = new TuyenXeService();
+
+    public ManageRouteFrame() {
+        setTitle("Quản lý tuyến xe");
+        setContentPane(MainPanel);
+        setSize(700, 600);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        initTable();
+        initComboBoxData();
+        resetToDefault();
+        cboDiemKhoiHanh.addActionListener(e -> filterRoutes());
+        cboDiemden.addActionListener(e -> filterRoutes());
+
+        cboIDTuyen.addActionListener(e -> {
+            String selectedID = (String) cboIDTuyen.getSelectedItem();
+            if (selectedID != null && !selectedID.equals("Chọn ID") && cboIDTuyen.isEnabled()) {
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    if (model.getValueAt(i, 0).toString().equals(selectedID)) {
+                        showDetail(i);
+                        break;
+                    }
+                }
+            }
+        });
+
+        btnAdd.addActionListener(e -> {
+            clearFields();
+            enableFields(true);
+            txtMaTuyen.setText("");
+            txtDiemKhoiHanh.requestFocus();
+        });
+
+        btnUpdate.addActionListener(e -> {
+            if (!txtMaTuyen.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Lỗi!");
+                return;
+            }
+            try {
+                String di = txtDiemKhoiHanh.getText().trim();
+                String den = txtDiemden.getText().trim();
+                float km = Float.parseFloat(txtKhoangCach.getText().trim());
+                int phut = Integer.parseInt(txtTimeChay.getText().trim());
+
+                if (txtMaTuyen.getText().equals("")) {
+                    TuyenXe tx = new TuyenXe(di, den, km, phut);
+                    JOptionPane.showMessageDialog(this, tuyenXeService.them(tx));
+                } else {
+                    int id = Integer.parseInt(txtMaTuyen.getText());
+                    TuyenXe tx = new TuyenXe(id, di, den, km, phut);
+                    JOptionPane.showMessageDialog(this, tuyenXeService.capNhat(tx));
+                }
+                resetToDefault();
+                JOptionPane.showMessageDialog(this, "Dữ liệu đã lưu!");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Không đủ điều kiện hoặc không có gì để Update!");
+            }
+        });
+
+        btnDelete.addActionListener(e -> {
+            String idStr = txtMaTuyen.getText();
+            if (idStr.isEmpty() || idStr.equals("Tự động")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn tuyến cần xóa!");
+                return;
+            }
+            int choice = JOptionPane.showConfirmDialog(this, "Xóa trong DB tuyến ID " + idStr + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+            if (choice == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this, tuyenXeService.xoa(Integer.parseInt(idStr)));
+                resetToDefault();
+            }
+        });
+
+        btnLoad.addActionListener(e -> {
+            loadDataFromDatabase();
+            initComboBoxData();
+            resetToDefault();
+            JOptionPane.showMessageDialog(this, "Tải dữ liệu thành công!");
+        });
+        btnBack.addActionListener(e -> {
+            new AdminMainFrame().setVisible(true);
+            dispose();
+        });
+    }
+
+    private void initTable() {
+        String[] columns = {"Mã tuyến", "Điểm đi", "Điểm đến", "Khoảng cách (km)", "Thời gian (phút)"};
+        model = new DefaultTableModel(columns, 0);
+        tblRouteList.setModel(model);
+        tblRouteList.setDefaultEditor(Object.class, null);
+        loadDataFromDatabase();
+    }
+
+    private void initComboBoxData() {
+        cboDiemKhoiHanh.setEnabled(false);
+        cboDiemden.setEnabled(false);
+        cboDiemKhoiHanh.removeAllItems();
+        cboDiemden.removeAllItems();
+        cboDiemKhoiHanh.addItem("");
+        cboDiemden.addItem("");
+
+        List<TuyenXe> list = tuyenXeService.getAll();
+        Set<String> tinhThanh = new TreeSet<>();
+        for (TuyenXe tx : list) {
+            tinhThanh.add(tx.getKhoiHanh());
+            tinhThanh.add(tx.getDiemDen());
+        }
+        for (String tinh : tinhThanh) {
+            cboDiemKhoiHanh.addItem(tinh);
+            cboDiemden.addItem(tinh);
+        }
+        cboDiemKhoiHanh.setEnabled(true);
+        cboDiemden.setEnabled(true);
+    }
+
+    private void loadDataFromDatabase() {
+        model.setRowCount(0);
+        List<TuyenXe> list = tuyenXeService.getAll();
+        for (TuyenXe tx : list) {
+            model.addRow(new Object[]{tx.getTuyenId(), tx.getKhoiHanh(), tx.getDiemDen(), tx.getKhoangCach(), tx.getThoiGianDiChuyen()});
+        }
+        updateTotalCount();
+    }
+
+    private void filterRoutes() {
+        String di = (String) cboDiemKhoiHanh.getSelectedItem();
+        String den = (String) cboDiemden.getSelectedItem();
+        if (di == null || di.isEmpty() || den == null || den.isEmpty()) return;
+        List<Integer> matchingRows = new ArrayList<>();
+        cboIDTuyen.removeAllItems();
+        cboIDTuyen.addItem("Chọn ID");
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            if (model.getValueAt(i, 1).toString().equals(di) && model.getValueAt(i, 2).toString().equals(den)) {
+                matchingRows.add(i);
+                cboIDTuyen.addItem(model.getValueAt(i, 0).toString());
+            }
+        }
+
+        if (matchingRows.isEmpty()) {
+            clearFields();
+            cboIDTuyen.setEnabled(false);
+            JOptionPane.showMessageDialog(this, "Hiện tại không có tuyến xe nào từ " + di + " đến " + den + "!");
+        } else if (matchingRows.size() == 1) {
+            showDetail(matchingRows.get(0));
+            cboIDTuyen.setEnabled(false);
+        } else {
+            clearFields();
+            cboIDTuyen.setEnabled(true);
+            JOptionPane.showMessageDialog(this, "Có nhiều tuyến trùng lộ trình, vui lòng chọn ID cụ thể!");
+        }
+    }
+
+    private void showDetail(int rowIndex) {
+        txtMaTuyen.setText(model.getValueAt(rowIndex, 0).toString());
+        txtDiemKhoiHanh.setText(model.getValueAt(rowIndex, 1).toString());
+        txtDiemden.setText(model.getValueAt(rowIndex, 2).toString());
+        txtKhoangCach.setText(model.getValueAt(rowIndex, 3).toString());
+        txtTimeChay.setText(model.getValueAt(rowIndex, 4).toString());
+        tblRouteList.setRowSelectionInterval(rowIndex, rowIndex);
+        enableFields(false);
+    }
+
+    private void resetToDefault() {
+        clearFields();
+        disableFields();
+        cboDiemKhoiHanh.setSelectedIndex(0);
+        cboDiemden.setSelectedIndex(0);
+        cboIDTuyen.setEnabled(false);
+    }
+
+    private void clearFields() {
+        txtMaTuyen.setText(""); txtDiemKhoiHanh.setText("");
+        txtDiemden.setText(""); txtKhoangCach.setText(""); txtTimeChay.setText("");
+    }
+
+    private void disableFields() {
+        enableFields(false);
+    }
+
+    private void enableFields(boolean isEnabled) {
+        txtDiemKhoiHanh.setEditable(isEnabled);
+        txtDiemden.setEditable(isEnabled);
+        txtKhoangCach.setEditable(isEnabled);
+        txtTimeChay.setEditable(isEnabled);
+        Color bg = isEnabled ? Color.WHITE : new Color(240, 240, 240);
+        txtDiemKhoiHanh.setBackground(bg);
+        txtDiemden.setBackground(bg);
+        txtKhoangCach.setBackground(bg);
+        txtTimeChay.setBackground(bg);
+    }
+
+    private void updateTotalCount() {
+        txtTongsoTuyen.setText(String.valueOf(model.getRowCount()));
+    }
+
+
+}

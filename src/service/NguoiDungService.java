@@ -4,6 +4,8 @@ import dao.NguoiDungDao;
 import model.NguoiDung;
 import utils.Auth; // Class lưu phiên đăng nhập
 
+import java.util.List;
+
 public class NguoiDungService {
 
     private NguoiDungDao dao = new NguoiDungDao();
@@ -92,4 +94,23 @@ public class NguoiDungService {
         return success;
     }
 
+    public List<NguoiDung> layTatCaNguoiDung() {
+        // 1. (Tuỳ chọn) Bảo mật: Chỉ cho phép Admin hoặc Quản lý xem danh sách
+        if (!isAdmin()) {
+            // Nếu không phải admin thì trả về null hoặc danh sách rỗng
+            return null;
+        }
+
+        // 2. Gọi tầng DAO để thực hiện câu lệnh SELECT * FROM ...
+        return dao.layTatCa();
+    }
+    public NguoiDung layThongTinTheoId(int id) {
+        // Kiểm tra id có hợp lệ không (ví dụ id phải > 0)
+        if (id <= 0) {
+            return null;
+        }
+
+        // Gọi xuống DAO để lấy dữ liệu
+        return dao.layThongTinTheoId(id);
+    }
 }

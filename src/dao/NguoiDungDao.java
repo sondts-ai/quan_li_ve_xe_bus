@@ -4,17 +4,37 @@ import model.NguoiDung;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class NguoiDungDao {
-    public NguoiDung dangNhap(String taiKhoan,String matKhau){
-        String sql="SELECT * FROM nguoidung WHERE taikhoan=? AND matkhau=?";
-        try(Connection conn=Connectdb.getConnection();
-            PreparedStatement ps=conn.prepareStatement(sql)) {
+    public NguoiDung dangNhap(String taiKhoan, String matKhau) {
+        String sql = "SELECT * FROM nguoidung WHERE taikhoan=? AND matkhau=?";
+        try (Connection conn = Connectdb.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
             ps.setString(1, taiKhoan);
             ps.setString(2, matKhau);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                // --- BẮT ĐẦU ĐOẠN SỬA ---
+
+                // 1. Lấy vai trò gốc từ SQL
+                String rawRole = rs.getString("vaitro");
+
+                // 2. In ra để kiểm tra (Nhìn cửa sổ Run bên dưới sẽ thấy)
+                System.out.println("DAO Debug - Role gốc: '" + rawRole + "'");
+
+                // 3. Xử lý cắt khoảng trắng ngay lập tức
+                String cleanRole = "";
+                if (rawRole != null) {
+                    cleanRole = rawRole.trim();
+                }
+
+                System.out.println("DAO Debug - Role sau khi trim: '" + cleanRole + "'");
+                // --- KẾT THÚC ĐOẠN SỬA ---
+
                 return new NguoiDung(
                         rs.getInt("nguoidungid"),
                         rs.getString("hoten"),
@@ -23,11 +43,10 @@ public class NguoiDungDao {
                         rs.getString("email"),
                         rs.getString("taikhoan"),
                         rs.getString("matkhau"),
-                        rs.getString("vaitro")
-
+                        cleanRole // <--- TRUYỀN BIẾN ĐÃ CẮT KHOẢNG TRẮNG VÀO ĐÂY
                 );
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
@@ -80,6 +99,12 @@ public class NguoiDungDao {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+                // Xử lý dấu cách thừa cho vai trò
+                String vaitroRaw = rs.getString("vaitro");
+                if (vaitroRaw != null) {
+                    vaitroRaw = vaitroRaw.trim();
+                }
+
                 return new NguoiDung(
                         rs.getInt("nguoidungid"),
                         rs.getString("hoten"),
@@ -88,7 +113,7 @@ public class NguoiDungDao {
                         rs.getString("email"),
                         rs.getString("taikhoan"),
                         rs.getString("matkhau"),
-                        rs.getString("vaitro")
+                        vaitroRaw
                 );
             }
         } catch (Exception e) {
@@ -113,6 +138,32 @@ public class NguoiDungDao {
             e.printStackTrace();
             return false;
         }
+    }
+    public List<NguoiDung> layTatCa() {
+        List<NguoiDung> list = new ArrayList<>();
+        String sql = "SELECT * FROM nguoidung"; // Lấy tất cả
+
+        try (Connection conn = Connectdb.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                NguoiDung nd = new NguoiDung(
+                        rs.getInt("nguoidungid"),
+                        rs.getString("hoten"),
+                        rs.getDate("ngaysinh"),
+                        rs.getString("sdt"),
+                        rs.getString("email"),
+                        rs.getString("taikhoan"),
+                        rs.getString("matkhau"),
+                        rs.getString("vaitro")
+                );
+                list.add(nd);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
 }
