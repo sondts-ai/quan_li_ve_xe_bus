@@ -76,4 +76,20 @@ public class NguoiDungService {
                         Auth.user.getVaiTro().equalsIgnoreCase("quanly")
         );
     }
+    public boolean capNhatThongTin(NguoiDung nd) {
+        if (nd == null || !Auth.isLogin() || nd.getNguoiDungId() != Auth.user.getNguoiDungId()) {
+            return false; // Kiểm tra người dùng hợp lệ
+        }
+
+        // Gọi DAO để cập nhật vào database
+        boolean success = dao.capNhat(nd);
+
+        if (success) {
+            // Nếu cập nhật thành công, load lại thông tin mới nhất vào Auth.user
+            reloadThongTinCaNhan();
+        }
+
+        return success;
+    }
+
 }

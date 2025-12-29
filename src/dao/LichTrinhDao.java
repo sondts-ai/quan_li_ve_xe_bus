@@ -36,6 +36,62 @@ public class LichTrinhDao {
         return list;
     }
 
+    public List<LichTrinh> getByTuyenId(int tuyenId) {
+        List<LichTrinh> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM lichtrinh WHERE tuyenid = ?";
+
+        try (Connection conn = Connectdb.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, tuyenId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                LichTrinh lt = new LichTrinh();
+                lt.setLichId(rs.getInt("lichid"));
+                lt.setXeId(rs.getInt("xeid"));
+                lt.setTuyenId(rs.getInt("tuyenid"));
+
+                lt.setThoiGianKhoiHanh(rs.getTimestamp("thoigiankhoihanh"));
+                lt.setThoiGianDen(rs.getTimestamp("thoigianden"));
+
+                lt.setSoGheTrong(rs.getInt("soghetrong"));
+                lt.setGiaVe(rs.getDouble("giave"));
+
+                list.add(lt);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public LichTrinh getByLichId(int lichId) {
+        String sql = "SELECT * FROM lichtrinh WHERE lichid = ?";
+        try (Connection c = Connectdb.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql)) {
+
+            ps.setInt(1, lichId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                LichTrinh lt = new LichTrinh();
+                lt.setLichId(rs.getInt("lichid"));
+                lt.setXeId(rs.getInt("xeid"));
+                lt.setTuyenId(rs.getInt("tuyenid"));
+                lt.setThoiGianKhoiHanh(rs.getTimestamp("thoigiankhoihanh"));
+                lt.setThoiGianDen(rs.getTimestamp("thoigianden"));
+                lt.setSoGheTrong(rs.getInt("soghetrong"));
+                lt.setGiaVe(rs.getDouble("giave"));
+                return lt;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public boolean insert(LichTrinh lt) {
         String sql = "INSERT INTO lichtrinh(xeid, tuyenid, thoigiankhoihanh, thoigianden, soghetrong, giave) VALUES(?,?,?,?,?,?)";
 

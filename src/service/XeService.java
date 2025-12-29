@@ -57,4 +57,7 @@ public class XeService {
             return "Lỗi: Không thể xóa (Xe này đang có lịch chạy hoặc lỗi hệ thống)!";
         }
     }
+    public Xe getById(int xeId) {
+        return dao.getById(xeId);
+    }
 }

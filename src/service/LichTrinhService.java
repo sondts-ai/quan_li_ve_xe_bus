@@ -68,5 +68,16 @@ public class LichTrinhService {
         return lichTrinhDAO.timChuyenXe(khoiHanh, diemDen, ngay);
     }
 
+    public List<LichTrinh> getLichTrinhByTuyenId(int tuyenId) {
+        if (tuyenId <= 0) {
+            return new ArrayList<>();
+        }
+        return lichTrinhDAO.getByTuyenId(tuyenId);
+    }
+
+    public LichTrinh getByLichId(int lichId) {
+        return lichTrinhDAO.getByLichId(lichId);
+    }
+
 
 }

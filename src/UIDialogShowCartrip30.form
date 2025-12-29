@@ -60,244 +60,244 @@
         <properties/>
         <border type="line" title="Danh sách ghế (xe 30 ghế)"/>
         <children>
-          <component id="7d1c8" class="javax.swing.JButton" binding="button1" default-binding="true">
+          <component id="7d1c8" class="javax.swing.JButton" binding="button_1">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="A1"/>
             </properties>
           </component>
-          <component id="5ebc2" class="javax.swing.JButton" binding="button2" default-binding="true">
+          <component id="5ebc2" class="javax.swing.JButton" binding="button_2">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="A2"/>
             </properties>
           </component>
-          <component id="13d46" class="javax.swing.JButton" binding="button3" default-binding="true">
+          <component id="13d46" class="javax.swing.JButton" binding="a3Button" default-binding="true">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="A3"/>
             </properties>
           </component>
-          <component id="24346" class="javax.swing.JButton" binding="button4" default-binding="true">
+          <component id="24346" class="javax.swing.JButton" binding="a4Button" default-binding="true">
             <constraints>
               <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="A4"/>
             </properties>
           </component>
-          <component id="33f1" class="javax.swing.JButton" binding="button8" default-binding="true">
+          <component id="33f1" class="javax.swing.JButton" binding="button7a">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="B1"/>
             </properties>
           </component>
-          <component id="61028" class="javax.swing.JButton" binding="button9" default-binding="true">
+          <component id="61028" class="javax.swing.JButton" binding="button8">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="B2"/>
             </properties>
           </component>
-          <component id="71ca8" class="javax.swing.JButton" binding="button10" default-binding="true">
+          <component id="71ca8" class="javax.swing.JButton" binding="Button9">
             <constraints>
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="B3"/>
             </properties>
           </component>
-          <component id="2397d" class="javax.swing.JButton" binding="button15" default-binding="true">
+          <component id="2397d" class="javax.swing.JButton" binding="button13a">
             <constraints>
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="C1"/>
             </properties>
           </component>
-          <component id="63f91" class="javax.swing.JButton" binding="button16" default-binding="true">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Button"/>
-            </properties>
-          </component>
-          <component id="d0d93" class="javax.swing.JButton" binding="button11" default-binding="true">
+          <component id="d0d93" class="javax.swing.JButton" binding="button15a">
             <constraints>
               <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="C3"/>
             </properties>
           </component>
-          <component id="cbbde" class="javax.swing.JButton" binding="button12" default-binding="true">
+          <component id="cbbde" class="javax.swing.JButton" binding="button10">
             <constraints>
               <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="B4"/>
             </properties>
           </component>
-          <component id="7166d" class="javax.swing.JButton" binding="button5" default-binding="true">
+          <component id="7166d" class="javax.swing.JButton" binding="button16a">
             <constraints>
               <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="C4"/>
             </properties>
           </component>
-          <component id="a8985" class="javax.swing.JButton" binding="button14" default-binding="true">
+          <component id="a8985" class="javax.swing.JButton" binding="button19a">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="D1"/>
             </properties>
           </component>
-          <component id="2e3fc" class="javax.swing.JButton" binding="button6" default-binding="true">
+          <component id="2e3fc" class="javax.swing.JButton" binding="button20a">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="D2"/>
             </properties>
           </component>
-          <component id="c3f17" class="javax.swing.JButton" binding="button13" default-binding="true">
+          <component id="c3f17" class="javax.swing.JButton" binding="button21a">
             <constraints>
               <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="D3"/>
             </properties>
           </component>
-          <component id="cd245" class="javax.swing.JButton" binding="button7" default-binding="true">
+          <component id="cd245" class="javax.swing.JButton" binding="Button22a">
             <constraints>
               <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="D4"/>
             </properties>
           </component>
-          <component id="71c73" class="javax.swing.JButton" binding="button17" default-binding="true">
+          <component id="71c73" class="javax.swing.JButton" binding="a5Button" default-binding="true">
             <constraints>
               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="A5"/>
             </properties>
           </component>
-          <component id="c89a1" class="javax.swing.JButton" binding="button18" default-binding="true">
+          <component id="c89a1" class="javax.swing.JButton" binding="button11a">
             <constraints>
               <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="B5"/>
             </properties>
           </component>
-          <component id="940b9" class="javax.swing.JButton" binding="button19" default-binding="true">
+          <component id="940b9" class="javax.swing.JButton" binding="button17a">
             <constraints>
               <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="C5"/>
             </properties>
           </component>
-          <component id="c0b6c" class="javax.swing.JButton" binding="button20" default-binding="true">
+          <component id="c0b6c" class="javax.swing.JButton" binding="button23a">
             <constraints>
               <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="D5"/>
             </properties>
           </component>
-          <component id="61859" class="javax.swing.JButton" binding="button21" default-binding="true">
+          <component id="61859" class="javax.swing.JButton" binding="button25a">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="E1"/>
             </properties>
           </component>
-          <component id="1eec8" class="javax.swing.JButton" binding="button22" default-binding="true">
+          <component id="1eec8" class="javax.swing.JButton" binding="button26a">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="E2"/>
             </properties>
           </component>
-          <component id="9678" class="javax.swing.JButton" binding="button23" default-binding="true">
+          <component id="9678" class="javax.swing.JButton" binding="button27a">
             <constraints>
               <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="E3"/>
             </properties>
           </component>
-          <component id="68b8d" class="javax.swing.JButton" binding="button24" default-binding="true">
+          <component id="68b8d" class="javax.swing.JButton" binding="button28a">
             <constraints>
               <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="E4"/>
             </properties>
           </component>
-          <component id="6a458" class="javax.swing.JButton" binding="button25" default-binding="true">
+          <component id="6a458" class="javax.swing.JButton" binding="button29a">
             <constraints>
               <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="E5"/>
             </properties>
           </component>
-          <component id="836ee" class="javax.swing.JButton" binding="button26" default-binding="true">
+          <component id="836ee" class="javax.swing.JButton" binding="button6a">
             <constraints>
               <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="A6"/>
             </properties>
           </component>
-          <component id="84189" class="javax.swing.JButton" binding="button27" default-binding="true">
+          <component id="84189" class="javax.swing.JButton" binding="button12">
             <constraints>
               <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="B6"/>
             </properties>
           </component>
-          <component id="2263e" class="javax.swing.JButton" binding="button28" default-binding="true">
+          <component id="2263e" class="javax.swing.JButton" binding="button18a">
             <constraints>
               <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="C6"/>
             </properties>
           </component>
-          <component id="2f4d8" class="javax.swing.JButton" binding="button29" default-binding="true">
+          <component id="2f4d8" class="javax.swing.JButton" binding="button24a">
             <constraints>
               <grid row="3" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="D6"/>
             </properties>
           </component>
-          <component id="c510b" class="javax.swing.JButton" binding="button30" default-binding="true">
+          <component id="c510b" class="javax.swing.JButton" binding="e6Button" default-binding="true">
             <constraints>
               <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Button"/>
+              <text value="E6"/>
+            </properties>
+          </component>
+          <component id="63f91" class="javax.swing.JButton" binding="button14a">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="C2"/>
             </properties>
           </component>
         </children>

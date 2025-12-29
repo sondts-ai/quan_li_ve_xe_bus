@@ -11,7 +11,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="fede2" binding="panel_fixInfor" layout-manager="GridLayoutManager" row-count="15" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
+      <grid id="fede2" binding="panel_fixInfor" layout-manager="GridLayoutManager" row-count="14" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="0" indent="0" use-parent-layout="false">
@@ -48,12 +48,12 @@
           </vspacer>
           <vspacer id="48a52">
             <constraints>
-              <grid row="13" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="12" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
           <component id="7e705" class="javax.swing.JButton" binding="button_return">
             <constraints>
-              <grid row="14" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="13" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <borderPainted value="false"/>
@@ -134,18 +134,6 @@
               <horizontalTextPosition value="2"/>
               <icon value="sprites/icontick.png"/>
               <text value="Đồng ý"/>
-            </properties>
-          </component>
-          <component id="79617" class="javax.swing.JButton" binding="button_FixPass">
-            <constraints>
-              <grid row="12" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <borderPainted value="false"/>
-              <contentAreaFilled value="false"/>
-              <focusPainted value="false"/>
-              <label value="Đổi mật khẩu"/>
-              <text value="Đổi mật khẩu"/>
             </properties>
           </component>
         </children>

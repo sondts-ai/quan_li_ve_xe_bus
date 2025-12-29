@@ -88,6 +88,30 @@ public class XeDao {
         }
         return false;
     }
+    public Xe getById(int id) {
+        String sql = "SELECT * FROM xe WHERE xeid = ?";
 
+        try (Connection conn = Connectdb.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    // Tạo đối tượng Xe từ dữ liệu tìm thấy
+                    return new Xe(
+                            rs.getInt("xeid"),
+                            rs.getString("tenxe"),
+                            rs.getString("bienso"),
+                            rs.getInt("tongghe"),
+                            rs.getString("loaixe")
+                    );
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null; // Trả về null nếu không tìm thấy
+    }
 
 }

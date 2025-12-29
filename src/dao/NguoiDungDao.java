@@ -96,4 +96,23 @@ public class NguoiDungDao {
         }
         return null;
     }
+    public boolean capNhat(NguoiDung nd) {
+        String sql = "UPDATE nguoidung SET hoten=?, ngaysinh=?, sdt=?, email=? WHERE nguoidungid=?";
+        try (Connection conn = Connectdb.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, nd.getHoTen());
+            ps.setDate(2, nd.getNgaySinh());  // java.sql.Date
+            ps.setString(3, nd.getSdt());
+            ps.setString(4, nd.getEmail());
+            ps.setInt(5, nd.getNguoiDungId());
+
+            return ps.executeUpdate() > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

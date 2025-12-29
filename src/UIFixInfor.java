@@ -1,6 +1,13 @@
+import model.NguoiDung;
+import service.NguoiDungService;
+import utils.Auth;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UIFixInfor {
     private JPanel panelMain_FixInfor;
@@ -18,7 +25,7 @@ public class UIFixInfor {
     private JLabel lable_gmail;
     private JPanel title_panel;
     private JButton button_agree;
-
+    NguoiDungService nguoiDungService = new NguoiDungService();
     Main main;
 
     public JPanel getPanelMain_FixInfor() {
@@ -31,7 +38,7 @@ public class UIFixInfor {
         button_agree.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+            updateUserInfo();
             }
         });
         button_return.addActionListener(new ActionListener() {
@@ -40,12 +47,43 @@ public class UIFixInfor {
                 main.switchPage("formInfor");
             }
         });
-        button_FixPass.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                main.switchPage("formFixPass");
-            }
-        });
+    }
+
+    private void updateUserInfo() {
+        String name = textField_name.getText().trim();
+        String birth = textField_birth.getText().trim();
+        String phone = textField_numbertele.getText().trim();
+        String gmail = textField_Gmail.getText().trim();
+
+        // Kiểm tra dữ liệu nhập liệu
+        if(name.isEmpty() || birth.isEmpty() || phone.isEmpty() || gmail.isEmpty()) {
+            JOptionPane.showMessageDialog(panelMain_FixInfor, "Vui lòng điền đầy đủ thông tin!");
+            return;
+        }
+        // xử lý ngày
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+
+        java.sql.Date ngaysinh;
+        try {
+            Date d = sdf.parse(birth);
+            ngaysinh = new java.sql.Date(d.getTime());
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Ngày sinh không hợp lệ! Định dạng: dd/MM/yyyy"
+            );
+            return;
+        }
+
+        // Cập nhật thông tin người dùng
+        Auth.user.setHoTen(name);
+        Auth.user.setNgaySinh(ngaysinh);
+        Auth.user.setSdt(phone);
+        Auth.user.setEmail(gmail);
+        nguoiDungService.capNhatThongTin(Auth.user);
+        JOptionPane.showMessageDialog(panelMain_FixInfor, "Cập nhật thông tin thành công!");
+        main.switchPage("formUImain");
     }
 
     private void createUIComponents() {
