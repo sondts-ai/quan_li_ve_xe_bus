@@ -213,7 +213,7 @@ public class ManageBusFrame extends JFrame{
                 for (LichTrinh lt : dsLich) {
                     if (lt.getXeId() == xId) {
                         lId = lt.getLichId();
-                        break; // Lấy chuyến đầu tiên tìm thấy
+                        break;
                     }
                 }
                 if (lId != -1) {

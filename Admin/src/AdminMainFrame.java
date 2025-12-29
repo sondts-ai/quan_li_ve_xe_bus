@@ -112,7 +112,7 @@ public class AdminMainFrame extends JFrame{
         JTextField[] fields = {txtSoLuong, txtHoTen, txtNgaySinh, txtSDT, txtEmail, txtTaiKhoan, txtVaitro};
         for (JTextField f : fields) {
             f.setEditable(false);
-            f.setBackground(new Color(235, 235, 235)); // Màu xám nhạt báo hiệu bị khóa
+            f.setBackground(new Color(235, 235, 235));
         }
         txtPassword.setEditable(false);
         txtPassword.setBackground(new Color(235, 235, 235));
