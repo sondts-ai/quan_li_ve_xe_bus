@@ -29,7 +29,7 @@ public class UIInforUser {
 
         this.main = main;
         this.nguoiDung = nguoiDung;
-        // khi khởi tạo thì đã set sẵn data vào text
+
         loadData();
         button_fixInfor.addActionListener(new ActionListener() {
             @Override
@@ -51,7 +51,6 @@ public class UIInforUser {
 
             lable_name.setText("Họ tên: " +nguoiDung.getHoTen());
 
-            // Chuyển đổi ngày sinh sang định dạng dd/MM/yyyy
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             lable_birth.setText("Ngày sinh: " +sdf.format(nguoiDung.getNgaySinh()));
 

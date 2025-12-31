@@ -154,7 +154,6 @@ public class VeXeDao {
     public List<VeXeTriTiet> getLichSuDatVe(int nguoiDungId) {
         List<VeXeTriTiet> list = new ArrayList<>();
 
-        // Câu lệnh SQL nối 3 bảng để lấy thông tin chi tiết
         String sql = """
             SELECT v.veid, 
                    tx.khoihanh + ' - ' + tx.diemden AS tentuyen, 
@@ -169,7 +168,6 @@ public class VeXeDao {
             WHERE v.nguoidungid = ?
             ORDER BY v.thoigiandat DESC
         """;
-        // ORDER BY DESC để vé mới nhất hiện lên đầu
 
         try (Connection conn = Connectdb.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {

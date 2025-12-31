@@ -31,7 +31,7 @@ public class ThongKeDao {
             while (rs.next()) {
                 ThongKe tk = new ThongKe();
                 tk.setTenTuyen(rs.getString("TenTuyen"));
-                // Chuyển timestamp thành String hiển thị cho đẹp
+
                 tk.setNgayKhoiHanh(rs.getDate("thoigiankhoihanh"));
                 tk.setSoVeDaBan(rs.getInt("SoVeDaBan"));
                 tk.setDoanhThu(rs.getDouble("TongDoanhThu"));
@@ -72,7 +72,6 @@ public class ThongKeDao {
     public List<ThongKe> getDoanhThuTungThangTrongNam(int nam) {
         List<ThongKe> list = new ArrayList<>();
 
-        // Query này sẽ nhóm doanh thu theo từng tháng
         String sql = "SELECT MONTH(l.thoigiankhoihanh) AS Thang, " +
                 "COUNT(v.veid) AS SoVe, " +
                 "COALESCE(SUM(l.giave), 0) AS TongTien " +

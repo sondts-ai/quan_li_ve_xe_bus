@@ -49,13 +49,11 @@ public class UIrigister {
                 String mk = new String(textField_pass.getText());
                 String vaitro = "khackhang";
 
-                // check rỗng
                 if (hoten.isEmpty() || ngaysinhstr.isEmpty() || tk.isEmpty() || mk.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
                     return;
                 }
 
-                // xử lý ngày
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 sdf.setLenient(false);
 
@@ -87,7 +85,6 @@ public class UIrigister {
                 JOptionPane.showMessageDialog(null, ketQua);
 
                 if (ketQua.equals("Đăng ký thành công!")) {
-                    // Ví dụ: quay về form login
                     main.switchPage("formLogin");
                 }
             }

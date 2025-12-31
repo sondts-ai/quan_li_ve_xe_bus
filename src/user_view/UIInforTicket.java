@@ -32,18 +32,17 @@ public class UIInforTicket {
         table_infor.setModel(routeModel1);
         loadTicketsByUserId(Auth.user.getNguoiDungId());
 
-        table_infor.getSelectionModel().addListSelectionListener(e -> { // hàm event routetable
-            if (e.getValueIsAdjusting()) return; // tránh gọi 2 lần
+        table_infor.getSelectionModel().addListSelectionListener(e -> {
+            if (e.getValueIsAdjusting()) return;
 
             int viewRow = table_infor.getSelectedRow();
             if (viewRow == -1) return;
 
-            // Nếu có sort / filter
             int modelRow = table_infor.convertRowIndexToModel(viewRow);
 
             idve = (int) table_infor
                     .getModel()
-                    .getValueAt(modelRow, 0); // ⭐ cột ID
+                    .getValueAt(modelRow, 0);
         });
         button_return.addActionListener(new ActionListener() {
             @Override
@@ -75,17 +74,16 @@ public class UIInforTicket {
         });
     }
     public void loadTicketsByUserId(int userId) {
-        // Xóa dữ liệu cũ
+
         routeModel1.setRowCount(0);
 
-        // Giả sử VeXeService có phương thức lấy vé theo user
         List<VeXeTriTiet> tickets = veXeService.getLichSuDatVe(userId);
 
         for (VeXeTriTiet ticket : tickets) {
             routeModel1.addRow(new Object[]{
-                    ticket.getVeId(),                          // thứ tự
-                    ticket.getViTriGhe(),           // vị trí ghế
-                    ticket.getThoiGianDat(),        // thời gian đặt
+                    ticket.getVeId(),
+                    ticket.getViTriGhe(),
+                    ticket.getThoiGianDat(),
                     ticket.getTrangThai(),
                     ticket.getThoiGianKhoiHanh(),
                     ticket.getGiaVe()

@@ -57,11 +57,8 @@ public class NguoiDungService {
 
     public void reloadThongTinCaNhan() {
         if (Auth.isLogin()) {
-            // Lấy ID từ người đang đăng nhập hiện tại
             int currentId = Auth.user.getNguoiDungId();
-            // Gọi DAO lấy dữ liệu mới nhất từ DB
             NguoiDung moiNhat = dao.layThongTinTheoId(currentId);
-            // Cập nhật lại vào Auth
             if (moiNhat != null) {
                 Auth.user = moiNhat;
             }
@@ -80,14 +77,12 @@ public class NguoiDungService {
     }
     public boolean capNhatThongTin(NguoiDung nd) {
         if (nd == null || !Auth.isLogin() || nd.getNguoiDungId() != Auth.user.getNguoiDungId()) {
-            return false; // Kiểm tra người dùng hợp lệ
+            return false;
         }
 
-        // Gọi DAO để cập nhật vào database
         boolean success = dao.capNhat(nd);
 
         if (success) {
-            // Nếu cập nhật thành công, load lại thông tin mới nhất vào Auth.user
             reloadThongTinCaNhan();
         }
 
@@ -95,22 +90,16 @@ public class NguoiDungService {
     }
 
     public List<NguoiDung> layTatCaNguoiDung() {
-        // 1. (Tuỳ chọn) Bảo mật: Chỉ cho phép Admin hoặc Quản lý xem danh sách
         if (!isAdmin()) {
-            // Nếu không phải admin thì trả về null hoặc danh sách rỗng
             return null;
         }
-
-        // 2. Gọi tầng DAO để thực hiện câu lệnh SELECT * FROM ...
         return dao.layTatCa();
     }
     public NguoiDung layThongTinTheoId(int id) {
-        // Kiểm tra id có hợp lệ không (ví dụ id phải > 0)
         if (id <= 0) {
             return null;
         }
 
-        // Gọi xuống DAO để lấy dữ liệu
         return dao.layThongTinTheoId(id);
     }
 }

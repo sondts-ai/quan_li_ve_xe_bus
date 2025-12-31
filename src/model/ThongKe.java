@@ -18,7 +18,6 @@ public class ThongKe{
         this.doanhThu = doanhThu;
     }
 
-    // Getter và Setter
     public String getTenTuyen() { return tenTuyen; }
     public void setTenTuyen(String tenTuyen) { this.tenTuyen = tenTuyen; }
 

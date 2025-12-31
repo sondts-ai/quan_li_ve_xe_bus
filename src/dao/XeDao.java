@@ -51,7 +51,7 @@ public class XeDao {
     }
 
     public boolean update(Xe xe) {
-        // SỬA: Update đầy đủ thông tin và đúng tên cột
+
         String sql = "UPDATE xe SET tenxe=?, bienso=?, tongghe=?, loaixe=? WHERE xeid=?";
 
         try (Connection conn = Connectdb.getConnection();
@@ -98,7 +98,6 @@ public class XeDao {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    // Tạo đối tượng Xe từ dữ liệu tìm thấy
                     return new Xe(
                             rs.getInt("xeid"),
                             rs.getString("tenxe"),
@@ -111,7 +110,7 @@ public class XeDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null; // Trả về null nếu không tìm thấy
+        return null;
     }
 
 }

@@ -101,7 +101,7 @@ public class ManageBusFrame extends JFrame {
                 JOptionPane.showMessageDialog(this, "Vui lòng chọn xe cần xóa!");
                 return;
             }
-            int choice = JOptionPane.showConfirmDialog(this, "Bạn chắc chắn muốn xoá xe ID: " + idStr + " ?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
+            int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá xe ID: " + idStr + " ?", "Xác nhận xóa", JOptionPane.YES_NO_OPTION);
             if (choice == JOptionPane.YES_OPTION) {
                 try {
                     int id = Integer.parseInt(idStr);
@@ -124,7 +124,7 @@ public class ManageBusFrame extends JFrame {
                 String loai = (String) cboLoaiXe.getSelectedItem();
 
                 if (ten.isEmpty() || bienSo.isEmpty() || loai == null) {
-                    JOptionPane.showMessageDialog(this, "Không đủ điều kiện hoặc không có gì để Update!");
+                    JOptionPane.showMessageDialog(this, "Không đủ điều kiện hoặc không có gì để Lưu!");
                     return;
                 }
                 Xe x = new Xe(0, ten, bienSo, Integer.parseInt(txtSoGhe.getText()), loai);
@@ -139,7 +139,7 @@ public class ManageBusFrame extends JFrame {
         btnLoad.addActionListener(e -> {
             loadDataFromDatabase();
             resetToDefault();
-            JOptionPane.showMessageDialog(this, "Tải dữ liệu thành công!");
+            JOptionPane.showMessageDialog(this, "Làm mới thành công!");
         });
 
         btnBack.addActionListener(e -> {

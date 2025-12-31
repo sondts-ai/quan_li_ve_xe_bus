@@ -42,7 +42,7 @@ public class UImain {
         button_infoUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UIInforUser uIinferUser = new UIInforUser(main,nguoiDung); // khởi tạo form và lấy class main
+                UIInforUser uIinferUser = new UIInforUser(main,nguoiDung);
                 main.getMainContainer().add(uIinferUser.getPanel_inforMain(),"formInfor");
                 main.switchPage("formInfor");
             }

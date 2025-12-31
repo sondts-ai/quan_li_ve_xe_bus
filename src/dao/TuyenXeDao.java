@@ -32,7 +32,7 @@ public class TuyenXeDao {
     }
 
     public boolean insert(TuyenXe tx) {
-        // Bổ sung thoigiandichuyen vào câu SQL
+
         String sql = "INSERT INTO tuyenxe(khoihanh, diemden, khoangcach, thoigiandichuyen) VALUES(?,?,?,?)";
 
         try (Connection conn = Connectdb.getConnection();
@@ -41,7 +41,7 @@ public class TuyenXeDao {
             ps.setString(1, tx.getKhoiHanh());
             ps.setString(2, tx.getDiemDen());
             ps.setFloat(3, tx.getKhoangCach());
-            ps.setInt(4, tx.getThoiGianDiChuyen()); // Set giá trị cho nó
+            ps.setInt(4, tx.getThoiGianDiChuyen());
             return ps.executeUpdate() > 0;
 
         } catch (Exception e) {

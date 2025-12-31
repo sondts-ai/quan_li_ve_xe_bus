@@ -178,7 +178,7 @@ public class LichTrinhDao {
 
             ps.setString(1, khoiHanh);
             ps.setString(2, diemDen);
-            // FIX: Chuyển đổi util.Date sang sql.Date để tránh lỗi
+
             ps.setDate(3, new Date(ngay.getTime()));
 
             ResultSet rs = ps.executeQuery();

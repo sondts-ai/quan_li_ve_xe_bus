@@ -47,37 +47,35 @@ public class UIFindBus {
                 main.switchPage("formUImain");
             }
         });
-        table_busRoute.getSelectionModel().addListSelectionListener(e -> { // hàm event routetable
-            if (e.getValueIsAdjusting()) return; // tránh gọi 2 lần
+        table_busRoute.getSelectionModel().addListSelectionListener(e -> {
+            if (e.getValueIsAdjusting()) return;
             int viewRow = table_busRoute.getSelectedRow();
             if (viewRow == -1) return;
 
-            // Nếu có sort / filter
             int modelRow = table_busRoute.convertRowIndexToModel(viewRow);
 
             int tuyenId = (int) table_busRoute
                     .getModel()
-                    .getValueAt(modelRow, 0); // ⭐ cột ID
+                    .getValueAt(modelRow, 0);
             loadTablechuyenxe(tuyenId);
             System.out.println("Dòng được chọn, ID = " + tuyenId);
         });
-        table_carTrip.getSelectionModel().addListSelectionListener(e -> { // hàm event routetable
-            if (e.getValueIsAdjusting()) return; // tránh gọi 2 lần
+        table_carTrip.getSelectionModel().addListSelectionListener(e -> {
+            if (e.getValueIsAdjusting()) return;
             int viewRow = table_carTrip.getSelectedRow();
             if (viewRow == -1) return;
 
-            // Nếu có sort / filter
             int modelRow = table_carTrip.convertRowIndexToModel(viewRow);
 
             int lichid = (int) table_carTrip
                     .getModel()
-                    .getValueAt(modelRow, 0); // ⭐ cột ID
+                    .getValueAt(modelRow, 0);
             showInforCarTrip(lichid);
             System.out.println("Dòng được chọn, ID = " + lichid);
         });
     }
     private void loadTableTuyenXe() {
-        routeModel1.setRowCount(0); // clear dữ liệu cũ
+        routeModel1.setRowCount(0);
 
         List<TuyenXe> list = tuyenXeService.getAll();
         for (TuyenXe tx : list) {
@@ -91,7 +89,7 @@ public class UIFindBus {
         }
     }
     private void loadTablechuyenxe(Integer id) {
-        routeModel_carTrip.setRowCount(0); // clear dữ liệu cũ
+        routeModel_carTrip.setRowCount(0);
 
         List<LichTrinh> list = lichTrinhService.getLichTrinhByTuyenId(id);
         for (LichTrinh lt : list) {
@@ -106,7 +104,7 @@ public class UIFindBus {
         return panelMain_findBus;
     }
 
-    public void showInforCarTrip(Integer lichid) // hiển thị thông tin chuyến xe khi nhấn vào chuyến
+    public void showInforCarTrip(Integer lichid)
     {
         Integer idxe = lichTrinhService.getByLichId(lichid).getXeId();
         Integer tongghe = xeService.getById(idxe).getTongGhe();

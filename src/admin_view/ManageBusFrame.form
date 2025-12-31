@@ -209,7 +209,7 @@
                 </constraints>
                 <properties>
                   <background color="-13834119"/>
-                  <text value="Add"/>
+                  <text value="Thêm xe"/>
                 </properties>
               </component>
               <component id="a9c38" class="javax.swing.JButton" binding="btnDelete">
@@ -218,7 +218,7 @@
                 </constraints>
                 <properties>
                   <background color="-1553884"/>
-                  <text value="Delete"/>
+                  <text value="Xoá xe"/>
                 </properties>
               </component>
               <component id="381c4" class="javax.swing.JButton" binding="btnUpdate">
@@ -227,7 +227,7 @@
                 </constraints>
                 <properties>
                   <background color="-1518017"/>
-                  <text value="Update"/>
+                  <text value="Lưu"/>
                 </properties>
               </component>
               <component id="3cfc8" class="javax.swing.JButton" binding="btnLoad">
@@ -236,7 +236,7 @@
                 </constraints>
                 <properties>
                   <background color="-11362840"/>
-                  <text value="Load Data"/>
+                  <text value="Làm mới"/>
                 </properties>
               </component>
               <component id="ddac4" class="javax.swing.JButton" binding="btnBack">
@@ -249,7 +249,7 @@
                   <horizontalTextPosition value="10"/>
                   <icon value="icons/arrow-back-thick-icon.png"/>
                   <iconTextGap value="20"/>
-                  <text value="BACK"/>
+                  <text value="QUAY LẠI"/>
                 </properties>
               </component>
             </children>

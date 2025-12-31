@@ -37,7 +37,6 @@ public class TuyenXeService {
     }
 
     public String capNhat(TuyenXe tx) {
-        // Logic kiểm tra y hệt như thêm mới
         if (tx.getKhoiHanh().equalsIgnoreCase(tx.getDiemDen())) {
             return "Lỗi: Điểm đi và điểm đến trùng nhau!";
         }

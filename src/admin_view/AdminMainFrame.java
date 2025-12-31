@@ -102,7 +102,6 @@ public class AdminMainFrame extends JFrame{
         String[] columns = {"ID", "Họ tên", "Ngày sinh", "SĐT", "Email", "Tài khoản", "Mật khẩu", "Vai trò"};
         model = new DefaultTableModel(columns, 0);
         tblUserList.setModel(model);
-        // Không cho Admin sửa trực tiếp trên bảng
         tblUserList.setDefaultEditor(Object.class, null);
     }
     private void disableFields() {

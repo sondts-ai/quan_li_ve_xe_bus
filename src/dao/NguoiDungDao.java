@@ -18,22 +18,17 @@ public class NguoiDungDao {
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                // --- BẮT ĐẦU ĐOẠN SỬA ---
 
-                // 1. Lấy vai trò gốc từ SQL
                 String rawRole = rs.getString("vaitro");
 
-                // 2. In ra để kiểm tra (Nhìn cửa sổ Run bên dưới sẽ thấy)
                 System.out.println("DAO Debug - Role gốc: '" + rawRole + "'");
 
-                // 3. Xử lý cắt khoảng trắng ngay lập tức
                 String cleanRole = "";
                 if (rawRole != null) {
                     cleanRole = rawRole.trim();
                 }
 
                 System.out.println("DAO Debug - Role sau khi trim: '" + cleanRole + "'");
-                // --- KẾT THÚC ĐOẠN SỬA ---
 
                 return new NguoiDung(
                         rs.getInt("nguoidungid"),
@@ -43,7 +38,7 @@ public class NguoiDungDao {
                         rs.getString("email"),
                         rs.getString("taikhoan"),
                         rs.getString("matkhau"),
-                        cleanRole // <--- TRUYỀN BIẾN ĐÃ CẮT KHOẢNG TRẮNG VÀO ĐÂY
+                        cleanRole
                 );
             }
         } catch (Exception e) {
@@ -99,7 +94,7 @@ public class NguoiDungDao {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                // Xử lý dấu cách thừa cho vai trò
+
                 String vaitroRaw = rs.getString("vaitro");
                 if (vaitroRaw != null) {
                     vaitroRaw = vaitroRaw.trim();
@@ -141,7 +136,7 @@ public class NguoiDungDao {
     }
     public List<NguoiDung> layTatCa() {
         List<NguoiDung> list = new ArrayList<>();
-        String sql = "SELECT * FROM nguoidung"; // Lấy tất cả
+        String sql = "SELECT * FROM nguoidung";
 
         try (Connection conn = Connectdb.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);

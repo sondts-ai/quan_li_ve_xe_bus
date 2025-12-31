@@ -164,7 +164,7 @@
                 </constraints>
                 <properties>
                   <background color="-13834119"/>
-                  <text value="Add New Route"/>
+                  <text value="Thêm tuyến"/>
                 </properties>
               </component>
               <component id="d06fc" class="javax.swing.JButton" binding="btnUpdate">
@@ -173,7 +173,7 @@
                 </constraints>
                 <properties>
                   <background color="-1518017"/>
-                  <text value="Update"/>
+                  <text value="Lưu"/>
                 </properties>
               </component>
               <component id="a3d86" class="javax.swing.JButton" binding="btnDelete">
@@ -182,7 +182,7 @@
                 </constraints>
                 <properties>
                   <background color="-1553884"/>
-                  <text value="Delete Route"/>
+                  <text value="Xoá tuyến"/>
                 </properties>
               </component>
               <component id="b7b78" class="javax.swing.JButton" binding="btnLoad">
@@ -191,7 +191,7 @@
                 </constraints>
                 <properties>
                   <background color="-11362840"/>
-                  <text value="Load Data"/>
+                  <text value="Làm mới"/>
                 </properties>
               </component>
               <component id="cab56" class="javax.swing.JButton" binding="btnBack">
@@ -203,7 +203,7 @@
                   <font name="Arial Black" size="12"/>
                   <horizontalTextPosition value="10"/>
                   <icon value="icons/arrow-back-thick-icon.png"/>
-                  <text value="BACK"/>
+                  <text value="QUAY LẠI"/>
                 </properties>
               </component>
             </children>

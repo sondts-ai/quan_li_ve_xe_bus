@@ -96,7 +96,6 @@ public class ManageRouteFrame extends JFrame {
         setSize(700, 600);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
-
         initTable();
         initComboBoxData();
         resetToDefault();
@@ -144,7 +143,7 @@ public class ManageRouteFrame extends JFrame {
                 loadDataFromDatabase();
                 JOptionPane.showMessageDialog(this, "Dữ liệu đã lưu!");
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Lỗi: " + ex.getMessage());
+                JOptionPane.showMessageDialog(this, "Không đủ điều kiện hoặc không có gì để Lưu!");
             }
         });
 
@@ -154,7 +153,7 @@ public class ManageRouteFrame extends JFrame {
                 JOptionPane.showMessageDialog(this, "Vui lòng chọn tuyến cần xóa!");
                 return;
             }
-            int choice = JOptionPane.showConfirmDialog(this, "Xóa trong DB tuyến ID " + idStr + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+            int choice = JOptionPane.showConfirmDialog(this, "Bạn muốn xoá tuyến ID " + idStr + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
             if (choice == JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(this, tuyenXeService.xoa(Integer.parseInt(idStr)));
                 resetToDefault();
@@ -166,7 +165,7 @@ public class ManageRouteFrame extends JFrame {
             loadDataFromDatabase();
             initComboBoxData();
             resetToDefault();
-            JOptionPane.showMessageDialog(this, "Tải dữ liệu thành công!");
+            JOptionPane.showMessageDialog(this, "Làm mới thành công!");
         });
 
         btnBack.addActionListener(e -> {
@@ -210,7 +209,6 @@ public class ManageRouteFrame extends JFrame {
     }
 
     private void showPanel(String cardName) {
-        // Parent của panelTrong phải dùng CardLayout m nhé
         CardLayout cl = (CardLayout) (panelTrong.getParent().getLayout());
         cl.show(panelTrong.getParent(), cardName);
     }

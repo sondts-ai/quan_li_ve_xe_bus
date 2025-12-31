@@ -15,7 +15,6 @@ public class ThongKeService {
 
 
     public double getTongDoanhThuThang(int thang, int nam) {
-        // Kiểm tra logic: Tháng phải từ 1-12, Năm phải > 1900
         if (thang < 1 || thang > 12) {
             System.out.println("Lỗi: Tháng không hợp lệ (Phải từ 1-12)");
             return 0;
@@ -32,7 +31,7 @@ public class ThongKeService {
     public List<ThongKe> getDoanhThuTungThangTrongNam(int nam) {
         if (nam < 1900) {
             System.out.println("Lỗi: Năm không hợp lệ");
-            return null; // Hoặc trả về list rỗng
+            return null;
         }
         return dao.getDoanhThuTungThangTrongNam(nam);
     }

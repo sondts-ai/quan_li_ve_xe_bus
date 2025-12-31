@@ -37,7 +37,6 @@ public class NguoiDung {
         this.vaiTro = vaiTro;
     }
 
-    // Getters and Setters
     public int getNguoiDungId() {
         return nguoiDungId;
     }

@@ -4,18 +4,16 @@ import java.util.Date;
 
 public class VeXeTriTiet {
     private int veId;
-    private String tenTuyen;        // Ví dụ: Hà Nội - Đà Nẵng
-    private Date thoiGianKhoiHanh;  // Ngày giờ xe chạy
-    private String viTriGhe;        // A01
-    private double giaVe;           // 350000
-    private Date thoiGianDat;       // Ngày giờ khách bấm nút đặt
-    private String trangThai;       // Đã đặt/Đã huỷ
+    private String tenTuyen;
+    private Date thoiGianKhoiHanh;
+    private String viTriGhe;
+    private double giaVe;
+    private Date thoiGianDat;
+    private String trangThai;
 
-    // Constructor không tham số
     public VeXeTriTiet() {
     }
 
-    // Constructor đầy đủ
     public VeXeTriTiet(int veId, String tenTuyen, Date thoiGianKhoiHanh, String viTriGhe, double giaVe, Date thoiGianDat, String trangThai) {
         this.veId = veId;
         this.tenTuyen = tenTuyen;

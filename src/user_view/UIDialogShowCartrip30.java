@@ -268,11 +268,10 @@ public class UIDialogShowCartrip30 {
             }
         });
     }
-    // 3. Hàm kiểm tra và khóa ghế
+
     private void checkBookedSeats(int lichId) {
         List<String> gheDaDat = veXeService.getGheDaDat(lichId);
 
-        // Hàng A
         disableIfBooked(button_1, "A1", gheDaDat);
         disableIfBooked(button_2, "A2", gheDaDat);
         disableIfBooked(a3Button, "A3", gheDaDat);
@@ -280,7 +279,6 @@ public class UIDialogShowCartrip30 {
         disableIfBooked(a5Button, "A5", gheDaDat);
         disableIfBooked(button6a, "A6", gheDaDat);
 
-        // Hàng B
         disableIfBooked(button7a, "B1", gheDaDat);
         disableIfBooked(button8,  "B2", gheDaDat);
         disableIfBooked(Button9,  "B3", gheDaDat);
@@ -288,7 +286,6 @@ public class UIDialogShowCartrip30 {
         disableIfBooked(button11a,"B5", gheDaDat);
         disableIfBooked(button12, "B6", gheDaDat);
 
-        // Hàng C
         disableIfBooked(button13a, "C1", gheDaDat);
         disableIfBooked(button14a, "C2", gheDaDat);
         disableIfBooked(button15a, "C3", gheDaDat);
@@ -296,7 +293,6 @@ public class UIDialogShowCartrip30 {
         disableIfBooked(button17a, "C5", gheDaDat);
         disableIfBooked(button18a, "C6", gheDaDat);
 
-        // Hàng D
         disableIfBooked(button19a, "D1", gheDaDat);
         disableIfBooked(button20a, "D2", gheDaDat);
         disableIfBooked(button21a, "D3", gheDaDat);
@@ -304,7 +300,6 @@ public class UIDialogShowCartrip30 {
         disableIfBooked(button23a, "D5", gheDaDat);
         disableIfBooked(button24a, "D6", gheDaDat);
 
-        // Hàng E
         disableIfBooked(button25a, "E1", gheDaDat);
         disableIfBooked(button26a, "E2", gheDaDat);
         disableIfBooked(button27a, "E3", gheDaDat);
@@ -312,20 +307,20 @@ public class UIDialogShowCartrip30 {
         disableIfBooked(button29a, "E5", gheDaDat);
         disableIfBooked(e6Button,  "E6", gheDaDat);
     }
-    // 4. Hàm phụ trợ disable nút
+
     private void disableIfBooked(JButton btn, String seatName, List<String> bookedList) {
-        if (btn == null) return; // Tránh lỗi nếu chưa bind nút
+        if (btn == null) return;
 
         if (bookedList.contains(seatName)) {
             btn.setEnabled(false);
             btn.setBackground(Color.RED);
-            // btn.setText(seatName + " (X)"); // Bỏ comment nếu muốn đổi text
+
         } else {
             btn.setEnabled(true);
             btn.setBackground(null);
         }
     }
-    private void bookTicket(int lichid)  // hàm đặt vé
+    private void bookTicket(int lichid)
     {
         VeXeService veXeService = new VeXeService();
         LichTrinh lt = lichTrinhService.getByLichId(lichid);
@@ -334,8 +329,8 @@ public class UIDialogShowCartrip30 {
 
             veXeService.datVe(iduser,lichid,idCharChoose);
     }
-    private void loadTripDetail(int lichId) {  // hàm load data
-        cartripmodel.setRowCount(0); // clear bảng mới
+    private void loadTripDetail(int lichId) {
+        cartripmodel.setRowCount(0);
 
         LichTrinh lt = lichTrinhService.getByLichId(lichId);
         if (lt != null) {

@@ -176,7 +176,7 @@
                   <horizontalTextPosition value="10"/>
                   <icon value="icons/arrow-back-thick-icon.png"/>
                   <iconTextGap value="20"/>
-                  <text value="BACK"/>
+                  <text value="QUAY LẠI"/>
                 </properties>
               </component>
             </children>

@@ -170,7 +170,7 @@ public class UIDialogShowCartrip16 {
             }
         });
     }
-    private void bookTicket(int lichid)  // hàm đặt vé
+    private void bookTicket(int lichid)
     {
         VeXeService veXeService = new VeXeService();
 
@@ -179,7 +179,7 @@ public class UIDialogShowCartrip16 {
         veXeService.datVe(iduser,lichid,idCharChoose);
     }
     private void loadTripDetail(int lichId) {
-        cartripmodel.setRowCount(0); // clear bảng mới
+        cartripmodel.setRowCount(0);
 
         LichTrinh lt = lichTrinhService.getByLichId(lichId);
         if (lt != null) {
