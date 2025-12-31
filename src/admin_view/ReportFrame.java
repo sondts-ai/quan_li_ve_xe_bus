@@ -74,12 +74,8 @@ public class ReportFrame extends JFrame {
     private void loadFilteredData() {
         String selNgay = (String) cboNgay.getSelectedItem();
         String selThang = (String) cboThang.getSelectedItem();
-        if (selThang.equals("Tháng")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn Tháng!");
-            return;
-        }
-        if (selNgay.equals("Ngày")) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn Ngày!");
+        if (selThang.equals("Tháng") || selNgay.equals("Ngày")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn đầy đủ thời gian!");
             return;
         }
         model.setRowCount(0);
