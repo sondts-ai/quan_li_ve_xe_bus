@@ -2,7 +2,7 @@ package service;
 
 import dao.NguoiDungDao;
 import model.NguoiDung;
-import utils.Auth; // Class lưu phiên đăng nhập
+import utils.Auth;
 
 import java.util.List;
 

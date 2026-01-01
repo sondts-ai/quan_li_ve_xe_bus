@@ -21,7 +21,7 @@ public class TuyenXeDao {
                         rs.getString("khoihanh"),
                         rs.getString("diemden"),
                         rs.getFloat("khoangcach"),
-                        rs.getInt("thoigiandichuyen") // Bổ sung cột này
+                        rs.getInt("thoigiandichuyen")
                 );
                 list.add(tx);
             }

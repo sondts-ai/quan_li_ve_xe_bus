@@ -122,8 +122,7 @@ public class NguoiDungDao {
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setString(1, nd.getHoTen());
-            ps.setDate(2, nd.getNgaySinh());  // java.sql.Date
-            ps.setString(3, nd.getSdt());
+            ps.setDate(2, nd.getNgaySinh());
             ps.setString(4, nd.getEmail());
             ps.setInt(5, nd.getNguoiDungId());
 

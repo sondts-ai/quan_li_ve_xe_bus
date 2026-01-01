@@ -179,11 +179,11 @@ public class VeXeDao {
                 VeXeTriTiet item = new VeXeTriTiet();
                 item.setVeId(rs.getInt("veid"));
                 item.setTenTuyen(rs.getString("tentuyen"));
-                item.setThoiGianKhoiHanh(rs.getTimestamp("thoigiankhoihanh")); // Dùng getTimestamp để lấy cả giờ
+                item.setThoiGianKhoiHanh(rs.getTimestamp("thoigiankhoihanh"));
                 item.setViTriGhe(rs.getString("vitrighe"));
                 item.setGiaVe(rs.getDouble("giave"));
                 item.setThoiGianDat(rs.getTimestamp("thoigiandat"));
-                item.setTrangThai(rs.getString("trangthai")); // Đã đặt / Đã huỷ
+                item.setTrangThai(rs.getString("trangthai"));
 
                 list.add(item);
             }

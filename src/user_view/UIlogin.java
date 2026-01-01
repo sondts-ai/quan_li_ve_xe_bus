@@ -1,7 +1,7 @@
 package user_view;
 
 import service.NguoiDungService;
-import app.Main; // Import đúng package chứa Main
+import app.Main;
 import utils.Auth;
 
 import javax.swing.*;
