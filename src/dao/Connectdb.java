@@ -12,11 +12,11 @@ public class Connectdb {
             "trustServerCertificate=true;" +
             "integratedSecurity=true;";
 
-    //private static final String USER = "sa";
-    //private static final String PASSWORD = "dothaison";
+    private static final String USER = "sa";
+    private static final String PASSWORD = "dothaison";
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL);
+        return DriverManager.getConnection(URL,USER,PASSWORD);
     }
 }
 
