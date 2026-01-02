@@ -93,7 +93,7 @@ public class ManageRouteFrame extends JFrame {
     public ManageRouteFrame() {
         setTitle("Quản lý tuyến xe");
         setContentPane(MainPanel);
-        setSize(700, 600);
+        setSize(700, 750);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         initTable();
@@ -131,7 +131,7 @@ public class ManageRouteFrame extends JFrame {
                 float km = Float.parseFloat(txtKhoangCach.getText().trim());
                 int phut = Integer.parseInt(txtTimeChay.getText().trim());
 
-                if (txtMaTuyen.getText().equals("") || txtMaTuyen.getText().equals("Tự động")) {
+                if (txtMaTuyen.getText().equals("")) {
                     TuyenXe tx = new TuyenXe(di, den, km, phut);
                     JOptionPane.showMessageDialog(this, tuyenXeService.them(tx));
                 } else {
@@ -149,7 +149,7 @@ public class ManageRouteFrame extends JFrame {
 
         btnDelete.addActionListener(e -> {
             String idStr = txtMaTuyen.getText();
-            if (idStr.isEmpty() || idStr.equals("Tự động")) {
+            if (idStr.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Vui lòng chọn tuyến cần xóa!");
                 return;
             }
