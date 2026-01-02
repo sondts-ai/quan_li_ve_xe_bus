@@ -1,4 +1,4 @@
-# 🚌 Phần Mềm Quản Lý Vé Xe Bus (Bus Ticket Management)
+# 🚌 Phần Mềm Quản Lý Vé Xe Khách
 
 Đây là ứng dụng máy tính (Desktop Application) được xây dựng bằng ngôn ngữ **Java**, hỗ trợ quản lý hệ thống đặt vé xe khách/xe bus. Hệ thống bao gồm các chức năng quản lý người dùng, lịch trình, tuyến xe và đặt vé, phục vụ cho cả quản trị viên (Admin) và người dùng (User).
 
