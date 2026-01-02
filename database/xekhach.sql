@@ -213,12 +213,12 @@ INSERT INTO vexe
 (nguoidungid, lichid, vitrighe, thoigiandat, trangthai)
 VALUES
 (1, 1,  N'A1',  GETDATE(), N'ĐÃ ĐẶT'),
-(2, 1,  N'A5',  GETDATE(), N'ĐÃ ĐẶT'),
-(3, 2,  N'A8',  GETDATE(), N'ĐÃ ĐẶT'),
-(4, 4,  N'A12', GETDATE(), N'ĐÃ ĐẶT'),
-(5, 5,  N'A6',  GETDATE(), N'ĐÃ ĐẶT'),
-(1, 3,  N'B10', GETDATE(), N'ĐÃ ĐẶT'),
-(2, 9,  N'B15', GETDATE(), N'ĐÃ ĐẶT'),
-(3, 6,  N'B24', GETDATE(), N'ĐÃ ĐẶT'),
-(4, 10, N'B4',  GETDATE(), N'ĐÃ ĐẶT'),
-(5, 8,  N'B18', GETDATE(), N'ĐÃ ĐẶT');
+(2, 1,  N'B1',  GETDATE(), N'ĐÃ ĐẶT'),
+(3, 2,  N'B4',  GETDATE(), N'ĐÃ ĐẶT'),
+(4, 4,  N'C4', GETDATE(), N'ĐÃ ĐẶT'),
+(5, 5,  N'B2',  GETDATE(), N'ĐÃ ĐẶT'),
+(1, 3,  N'B4', GETDATE(), N'ĐÃ ĐẶT'),
+(2, 9,  N'C3', GETDATE(), N'ĐÃ ĐẶT'),
+(3, 6,  N'D6', GETDATE(), N'ĐÃ ĐẶT'),
+(4, 10, N'A4',  GETDATE(), N'ĐÃ ĐẶT'),
+(5, 8,  N'C6', GETDATE(), N'ĐÃ ĐẶT');
