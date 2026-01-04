@@ -2,11 +2,9 @@ package user_view;
 
 import model.NguoiDung;
 import app.Main;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 public class UImain {
     private JPanel panel_UImain;
     private JPanel title_panel;
@@ -14,6 +12,7 @@ public class UImain {
     private JButton button_findbus;
     private JButton button_infoUser;
     private JLabel lable_nameuser;
+    private JButton button_logout;
     Main main;
     NguoiDung nguoiDung;
     public  JPanel getPanel_UImain()
@@ -45,6 +44,12 @@ public class UImain {
                 UIInforUser uIinferUser = new UIInforUser(main,nguoiDung);
                 main.getMainContainer().add(uIinferUser.getPanel_inforMain(),"formInfor");
                 main.switchPage("formInfor");
+            }
+        });
+        button_logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.switchPage("formlogin");
             }
         });
     }

@@ -1,5 +1,4 @@
 package admin_view;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -15,7 +14,6 @@ import service.TuyenXeService;
 import service.LichTrinhService;
 import service.XeService;
 import service.VeXeService;
-
 public class ManageRouteFrame extends JFrame {
     private JPanel MainPanel;
     private JTable tblRouteList;
@@ -89,7 +87,6 @@ public class ManageRouteFrame extends JFrame {
     private LichTrinhService lichTrinhService = new LichTrinhService();
     private XeService xeService = new XeService();
     private VeXeService veXeService = new VeXeService();
-
     public ManageRouteFrame() {
         setTitle("Quản lý tuyến xe");
         setContentPane(MainPanel);
@@ -99,10 +96,8 @@ public class ManageRouteFrame extends JFrame {
         initTable();
         initComboBoxData();
         resetToDefault();
-
         cboDiemKhoiHanh.addActionListener(e -> filterRoutes());
         cboDiemden.addActionListener(e -> filterRoutes());
-
         cboIDTuyen.addActionListener(e -> {
             String selectedID = (String) cboIDTuyen.getSelectedItem();
             if (selectedID != null && !selectedID.equals("Chọn ID") && cboIDTuyen.isEnabled()) {
@@ -115,7 +110,6 @@ public class ManageRouteFrame extends JFrame {
                 }
             }
         });
-
         btnAdd.addActionListener(e -> {
             clearFields();
             enableFields(true);
@@ -123,7 +117,6 @@ public class ManageRouteFrame extends JFrame {
             txtDiemKhoiHanh.requestFocus();
             showPanel("cardTrong");
         });
-
         btnUpdate.addActionListener(e -> {
             try {
                 String di = txtDiemKhoiHanh.getText().trim();
@@ -145,7 +138,6 @@ public class ManageRouteFrame extends JFrame {
                 JOptionPane.showMessageDialog(this, "Không đủ điều kiện hoặc không có gì để Lưu!");
             }
         });
-
         btnDelete.addActionListener(e -> {
             String idStr = txtMaTuyen.getText();
             if (idStr.isEmpty()) {
@@ -159,20 +151,17 @@ public class ManageRouteFrame extends JFrame {
                 loadDataFromDatabase();
             }
         });
-
         btnLoad.addActionListener(e -> {
             loadDataFromDatabase();
             initComboBoxData();
             resetToDefault();
             JOptionPane.showMessageDialog(this, "Làm mới thành công!");
         });
-
         btnBack.addActionListener(e -> {
             new AdminMainFrame().setVisible(true);
             dispose();
         });
     }
-
     private void loadSeatMap(int tuyenId) {
         List<LichTrinh> listLT = lichTrinhService.getLichTrinhByTuyenId(tuyenId);
         if (listLT.isEmpty()) {
@@ -206,12 +195,10 @@ public class ManageRouteFrame extends JFrame {
             }
         }
     }
-
     private void showPanel(String cardName) {
         CardLayout cl = (CardLayout) (panelTrong.getParent().getLayout());
         cl.show(panelTrong.getParent(), cardName);
     }
-
     private void initTable() {
         String[] columns = {"Mã tuyến", "Điểm đi", "Điểm đến", "Khoảng cách (km)", "Thời gian (phút)"};
         model = new DefaultTableModel(columns, 0);
@@ -219,7 +206,6 @@ public class ManageRouteFrame extends JFrame {
         tblRouteList.setDefaultEditor(Object.class, null);
         loadDataFromDatabase();
     }
-
     private void initComboBoxData() {
         cboDiemKhoiHanh.setEnabled(false);
         cboDiemden.setEnabled(false);
@@ -227,7 +213,6 @@ public class ManageRouteFrame extends JFrame {
         cboDiemden.removeAllItems();
         cboDiemKhoiHanh.addItem("");
         cboDiemden.addItem("");
-
         List<TuyenXe> list = tuyenXeService.getAll();
         Set<String> tinhThanh = new TreeSet<>();
         for (TuyenXe tx : list) {
@@ -241,7 +226,6 @@ public class ManageRouteFrame extends JFrame {
         cboDiemKhoiHanh.setEnabled(true);
         cboDiemden.setEnabled(true);
     }
-
     private void loadDataFromDatabase() {
         model.setRowCount(0);
         List<TuyenXe> list = tuyenXeService.getAll();
@@ -250,7 +234,6 @@ public class ManageRouteFrame extends JFrame {
         }
         updateTotalCount();
     }
-
     private void filterRoutes() {
         String di = (String) cboDiemKhoiHanh.getSelectedItem();
         String den = (String) cboDiemden.getSelectedItem();
@@ -258,14 +241,12 @@ public class ManageRouteFrame extends JFrame {
         List<Integer> matchingRows = new ArrayList<>();
         cboIDTuyen.removeAllItems();
         cboIDTuyen.addItem("Chọn ID");
-
         for (int i = 0; i < model.getRowCount(); i++) {
             if (model.getValueAt(i, 1).toString().equals(di) && model.getValueAt(i, 2).toString().equals(den)) {
                 matchingRows.add(i);
                 cboIDTuyen.addItem(model.getValueAt(i, 0).toString());
             }
         }
-
         if (matchingRows.isEmpty()) {
             clearFields();
             showPanel("cardTrong");
@@ -282,7 +263,6 @@ public class ManageRouteFrame extends JFrame {
             JOptionPane.showMessageDialog(this, "Có nhiều tuyến trùng lộ trình, vui lòng chọn ID cụ thể!");
         }
     }
-
     private void showDetail(int rowIndex) {
         txtMaTuyen.setText(model.getValueAt(rowIndex, 0).toString());
         txtDiemKhoiHanh.setText(model.getValueAt(rowIndex, 1).toString());
@@ -292,7 +272,6 @@ public class ManageRouteFrame extends JFrame {
         tblRouteList.setRowSelectionInterval(rowIndex, rowIndex);
         enableFields(false);
     }
-
     private void resetToDefault() {
         clearFields();
         disableFields();
@@ -301,14 +280,11 @@ public class ManageRouteFrame extends JFrame {
         cboDiemden.setSelectedIndex(0);
         cboIDTuyen.setEnabled(false);
     }
-
     private void clearFields() {
         txtMaTuyen.setText(""); txtDiemKhoiHanh.setText("");
         txtDiemden.setText(""); txtKhoangCach.setText(""); txtTimeChay.setText("");
     }
-
     private void disableFields() { enableFields(false); }
-
     private void enableFields(boolean isEnabled) {
         txtDiemKhoiHanh.setEditable(isEnabled);
         txtDiemden.setEditable(isEnabled);
@@ -320,7 +296,6 @@ public class ManageRouteFrame extends JFrame {
         txtKhoangCach.setBackground(bg);
         txtTimeChay.setBackground(bg);
     }
-
     private void updateTotalCount() {
         txtTongsoTuyen.setText(String.valueOf(model.getRowCount()));
     }

@@ -22,7 +22,6 @@ public class UIInforTicket {
     VeXeService veXeService = new VeXeService();
     DefaultTableModel routeModel1 = new DefaultTableModel(
             new Object[]{"mã vé", "vị trí ghế","thời gian đặt","trạng thái","thời điểm khởi hành","giá vé"}, 0);
-
     public JPanel getPanelMain_Inforticket() {
         return panelMain_Inforticket;
     }
@@ -31,15 +30,11 @@ public class UIInforTicket {
         this.main = main;
         table_infor.setModel(routeModel1);
         loadTicketsByUserId(Auth.user.getNguoiDungId());
-
         table_infor.getSelectionModel().addListSelectionListener(e -> {
             if (e.getValueIsAdjusting()) return;
-
             int viewRow = table_infor.getSelectedRow();
             if (viewRow == -1) return;
-
             int modelRow = table_infor.convertRowIndexToModel(viewRow);
-
             idve = (int) table_infor
                     .getModel()
                     .getValueAt(modelRow, 0);
@@ -74,9 +69,7 @@ public class UIInforTicket {
         });
     }
     public void loadTicketsByUserId(int userId) {
-
         routeModel1.setRowCount(0);
-
         List<VeXeTriTiet> tickets = veXeService.getLichSuDatVe(userId);
 
         for (VeXeTriTiet ticket : tickets) {

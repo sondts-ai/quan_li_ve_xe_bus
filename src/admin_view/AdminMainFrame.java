@@ -1,12 +1,13 @@
 package admin_view;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import app.Main;
 import service.NguoiDungService;
 import model.NguoiDung;
-
 public class AdminMainFrame extends JFrame{
     private JPanel MainPanel;
     private JPanel adminPanel;
@@ -24,6 +25,7 @@ public class AdminMainFrame extends JFrame{
     private JTextField txtTaiKhoan;
     private JPasswordField txtPassword;
     private JTextField txtVaitro;
+    private JButton button_logout;
     private DefaultTableModel model;
     private NguoiDungService service = new NguoiDungService();
     public AdminMainFrame() {
@@ -79,6 +81,13 @@ public class AdminMainFrame extends JFrame{
             new ReportFrame().setVisible(true);
             dispose();
         });
+        button_logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose(); // đóng Admin
+                new Main().khoiTaoGiaoDien();
+            }
+        });
     }
     private void loadDataToTable() {
         model.setRowCount(0);
@@ -97,7 +106,6 @@ public class AdminMainFrame extends JFrame{
         }
         txtSoLuong.setText(String.valueOf(dsnd.size()));
     }
-
     private void initTable() {
         String[] columns = {"ID", "Họ tên", "Ngày sinh", "SĐT", "Email", "Tài khoản", "Mật khẩu", "Vai trò"};
         model = new DefaultTableModel(columns, 0);

@@ -7,7 +7,6 @@ import utils.Auth;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 public class UIlogin {
     private JPanel loginmain_panel;
     private JPanel login_panel;
@@ -19,11 +18,9 @@ public class UIlogin {
     private JLabel lable_name;
     private JLabel lable_pass;
     private JPanel title_panel;
-
     Main main;
     public UIlogin(Main main) {
         this.main = main;
-
         button_rigister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

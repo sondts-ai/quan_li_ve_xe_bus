@@ -6,25 +6,18 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.VeXeTriTiet;
-
 public class VeXeDao {
-
-
     public boolean datVe(int nguoiDungId, int lichId, String viTriGhe) {
-
         String checkGheSql = "SELECT 1 FROM vexe WHERE lichid=? AND vitrighe=? AND trangthai=N'đã đặt'";
         String insertVeSql = "INSERT INTO vexe(nguoidungid, lichid, vitrighe, trangthai) VALUES(?, ?, ?, N'đã đặt')";
         String updateGhe = "UPDATE lichtrinh SET soghetrong=soghetrong-1 WHERE lichid=? AND soghetrong>0";
-
         Connection conn = null;
-
         try {
             conn = Connectdb.getConnection();
             if (conn == null) {
                 return false;
             }
             conn.setAutoCommit(false);
-
             try (PreparedStatement ps = conn.prepareStatement(checkGheSql)) {
                 ps.setInt(1, lichId);
                 ps.setString(2, viTriGhe);
@@ -34,7 +27,6 @@ public class VeXeDao {
                     return false;
                 }
             }
-
             try (PreparedStatement ps = conn.prepareStatement(updateGhe)) {
                 ps.setInt(1, lichId);
                 int rows = ps.executeUpdate();
@@ -43,14 +35,12 @@ public class VeXeDao {
                     return false;
                 }
             }
-
             try (PreparedStatement ps = conn.prepareStatement(insertVeSql)) {
                 ps.setInt(1, nguoiDungId);
                 ps.setInt(2, lichId);
                 ps.setString(3, viTriGhe);
                 ps.executeUpdate();
             }
-
             conn.commit();
             return true;
 
@@ -73,14 +63,10 @@ public class VeXeDao {
         }
         return false;
     }
-
-
     public boolean huyVe(int veId) {
-
         String getLichSql = "SELECT lichid FROM vexe WHERE veid=? AND trangthai=N'đã đặt'";
         String updateVeSql = "UPDATE vexe SET trangthai=N'đã huỷ' WHERE veid=?";
         String updateGheSql = "UPDATE lichtrinh SET soghetrong=soghetrong+1 WHERE lichid=?";
-
         Connection conn = null;
         try {
             conn = Connectdb.getConnection();
@@ -129,28 +115,22 @@ public class VeXeDao {
         }
         return false;
     }
-
     public List<String> getGheDaDat(int lichId) {
         List<String> dsGhe = new ArrayList<>();
 
         String sql = "SELECT vitrighe FROM vexe WHERE lichid=? AND trangthai=N'đã đặt'";
-
         try (Connection conn = Connectdb.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-
             ps.setInt(1, lichId);
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 dsGhe.add(rs.getString("vitrighe"));
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return dsGhe;
     }
-
     public List<VeXeTriTiet> getLichSuDatVe(int nguoiDungId) {
         List<VeXeTriTiet> list = new ArrayList<>();
 
@@ -171,10 +151,8 @@ public class VeXeDao {
 
         try (Connection conn = Connectdb.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
-
             ps.setInt(1, nguoiDungId);
             ResultSet rs = ps.executeQuery();
-
             while (rs.next()) {
                 VeXeTriTiet item = new VeXeTriTiet();
                 item.setVeId(rs.getInt("veid"));
@@ -184,7 +162,6 @@ public class VeXeDao {
                 item.setGiaVe(rs.getDouble("giave"));
                 item.setThoiGianDat(rs.getTimestamp("thoigiandat"));
                 item.setTrangThai(rs.getString("trangthai"));
-
                 list.add(item);
             }
 

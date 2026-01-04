@@ -12,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 public class UIDialogShowCartrip16 {
     private JPanel panelMain_showCartrip;
     private JTable table1;
@@ -42,14 +41,11 @@ public class UIDialogShowCartrip16 {
     String idCharChoose = "-1" ;
     Integer idLich;
     JDialog dialog;
-
     public JPanel getPanelMain_showCartrip() {
         return panelMain_showCartrip;
     }
-
     DefaultTableModel cartripmodel = new DefaultTableModel(
             new Object[]{"thứ tự","mã xe","thời gian đi","thời gian đến","giá vé"}, 0);
-
     public UIDialogShowCartrip16(Main main, Integer idchuyen, JDialog dialog){
             this.main = main;
             this.idLich = idchuyen;
@@ -180,7 +176,6 @@ public class UIDialogShowCartrip16 {
     }
     private void loadTripDetail(int lichId) {
         cartripmodel.setRowCount(0);
-
         LichTrinh lt = lichTrinhService.getByLichId(lichId);
         if (lt != null) {
             cartripmodel.addRow(new Object[]{
@@ -194,31 +189,24 @@ public class UIDialogShowCartrip16 {
     }
     private void checkBookedSeats(int lichId) {
         List<String> gheDaDat = veXeService.getGheDaDat(lichId);
-
         disableIfBooked(a1Button, "A1", gheDaDat);
         disableIfBooked(a2Button, "A2", gheDaDat);
         disableIfBooked(a3Button, "A3", gheDaDat);
         disableIfBooked(a4Button, "A4", gheDaDat);
-
-
         disableIfBooked(button5a, "B1", gheDaDat);
         disableIfBooked(button6a, "B2", gheDaDat);
         disableIfBooked(button7a, "B3", gheDaDat);
         disableIfBooked(button8a, "B4", gheDaDat);
-
         disableIfBooked(button9a, "C1", gheDaDat);
         disableIfBooked(button10a, "C2", gheDaDat);
         disableIfBooked(button11a, "C3", gheDaDat);
         disableIfBooked(button12a, "C4", gheDaDat);
-
-
         disableIfBooked(button13a, "D1", gheDaDat);
         disableIfBooked(button14a, "D2", gheDaDat);
         disableIfBooked(button15a, "D3", gheDaDat);
         disableIfBooked(button16a, "D4", gheDaDat);
     }
     private void disableIfBooked(JButton btn, String seatName, List<String> bookedList) {
-
         if (bookedList.contains(seatName)) {
             btn.setEnabled(false);
             btn.setBackground(Color.RED);
@@ -228,9 +216,5 @@ public class UIDialogShowCartrip16 {
             btn.setEnabled(true);
             btn.setBackground(null);
         }
-    }
-    public void loaddata()
-    {
-
     }
 }

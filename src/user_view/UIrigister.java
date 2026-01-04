@@ -30,17 +30,12 @@ public class UIrigister {
     private JLabel lable_birth;
     private JLabel lable_numbertele;
     private JLabel lable_gmail;
-
     Main main;
-
     public UIrigister(Main main) {
         this.main = main;
-
-
         button_rigister.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 String hoten = textField_name.getText().trim();
                 String ngaysinhstr = textField_birth.getText().trim();
                 String sdt = textField_numbertele.getText().trim();
@@ -48,15 +43,12 @@ public class UIrigister {
                 String tk = textField_account.getText().trim();
                 String mk = new String(textField_pass.getText());
                 String vaitro = "khackhang";
-
                 if (hoten.isEmpty() || ngaysinhstr.isEmpty() || tk.isEmpty() || mk.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
                     return;
                 }
-
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 sdf.setLenient(false);
-
                 java.sql.Date ngaysinh;
                 try {
                     Date d = sdf.parse(ngaysinhstr);
@@ -68,7 +60,6 @@ public class UIrigister {
                     );
                     return;
                 }
-
                 NguoiDung newnguoidung = new NguoiDung();
                 newnguoidung.setHoTen(hoten);
                 newnguoidung.setNgaySinh(ngaysinh);
@@ -77,21 +68,14 @@ public class UIrigister {
                 newnguoidung.setTaiKhoan(tk);
                 newnguoidung.setMatKhau(mk);
                 newnguoidung.setVaiTro(vaitro);
-
                 NguoiDungService service = new NguoiDungService();
-
                 String ketQua = service.dangKi(newnguoidung);
-
                 JOptionPane.showMessageDialog(null, ketQua);
-
                 if (ketQua.equals("Đăng ký thành công!")) {
                     main.switchPage("formLogin");
                 }
             }
         });
-
-
-
         button_return.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -99,7 +83,6 @@ public class UIrigister {
             }
         });
     }
-
     public JPanel getPanel_register()
     {
         return panel_registermain;

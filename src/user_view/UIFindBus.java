@@ -12,12 +12,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
 public class UIFindBus {
     private JPanel panelMain_findBus;
     private JPanel title_panel;
     private JPanel panel_busroute;
-    private JLabel lable_chooceBus;
     private JTable table_busRoute;
     private JPanel panel_carTrip;
     private JTable table_carTrip;
@@ -27,7 +25,6 @@ public class UIFindBus {
     JDialog dialog;
     Main main;
     Integer numberchair;
-
     private TuyenXeService tuyenXeService = new TuyenXeService();
     private LichTrinhService lichTrinhService = new LichTrinhService();
     private XeService xeService = new XeService();
@@ -36,7 +33,6 @@ public class UIFindBus {
     DefaultTableModel routeModel_carTrip = new DefaultTableModel(
             new Object[]{"mã chuyến xe","thời gian khởi hành", "thời gian đến"}, 0);
     public UIFindBus(Main main) {
-
           this.main = main;
           table_busRoute.setModel(routeModel1);
           table_carTrip.setModel(routeModel_carTrip);
@@ -76,7 +72,6 @@ public class UIFindBus {
     }
     private void loadTableTuyenXe() {
         routeModel1.setRowCount(0);
-
         List<TuyenXe> list = tuyenXeService.getAll();
         for (TuyenXe tx : list) {
             routeModel1.addRow(new Object[]{

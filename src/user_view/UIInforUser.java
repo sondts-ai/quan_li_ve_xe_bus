@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import app.Main;
 
 import model.NguoiDung;
-
 public class UIInforUser {
     private JPanel panel_inforMain;
     private JPanel infor_panel;
@@ -26,10 +25,8 @@ public class UIInforUser {
         return  panel_inforMain;
     }
     public UIInforUser(Main main, NguoiDung nguoiDung) {
-
         this.main = main;
         this.nguoiDung = nguoiDung;
-
         loadData();
         button_fixInfor.addActionListener(new ActionListener() {
             @Override
@@ -48,12 +45,9 @@ public class UIInforUser {
     }
     public void loadData() {
         if (nguoiDung != null) {
-
             lable_name.setText("Họ tên: " +nguoiDung.getHoTen());
-
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             lable_birth.setText("Ngày sinh: " +sdf.format(nguoiDung.getNgaySinh()));
-
             lable_numbertele.setText("Số điện thoại: " + nguoiDung.getSdt());
             lable_gmail.setText("Gmail: " + nguoiDung.getEmail());
         }
