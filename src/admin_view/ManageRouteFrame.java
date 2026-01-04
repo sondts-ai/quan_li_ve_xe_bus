@@ -140,7 +140,6 @@ public class ManageRouteFrame extends JFrame {
                     JOptionPane.showMessageDialog(this, tuyenXeService.capNhat(tx));
                 }
                 resetToDefault();
-                loadDataFromDatabase();
                 JOptionPane.showMessageDialog(this, "Dữ liệu đã lưu!");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Không đủ điều kiện hoặc không có gì để Lưu!");

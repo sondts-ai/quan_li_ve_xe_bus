@@ -59,7 +59,7 @@ public class ReportFrame extends JFrame {
     }
 
     private void loadOverallTotal() {
-        String sql = "SELECT SUM(l.giave) FROM vexe v JOIN lichtrinh l ON v.lichid = l.lichid";
+        String sql = "SELECT SUM(l.giave), FROM vexe v JOIN lichtrinh l ON v.lichid = l.lichid";
         try (Connection conn = Connectdb.getConnection();
              Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
