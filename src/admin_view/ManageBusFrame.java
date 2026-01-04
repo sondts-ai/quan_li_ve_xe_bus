@@ -107,6 +107,7 @@ public class ManageBusFrame extends JFrame {
                     int id = Integer.parseInt(idStr);
                     JOptionPane.showMessageDialog(this, xeService.xoa(id));
                     resetToDefault();
+                    loadDataFromDatabase();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, "Lỗi khi xóa: " + ex.getMessage());
                 }
