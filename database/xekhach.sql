@@ -138,3 +138,87 @@ ALTER TABLE [dbo].[vexe] WITH CHECK ADD FOREIGN KEY([lichid]) REFERENCES [dbo].[
 GO
 ALTER TABLE [dbo].[vexe] WITH CHECK ADD FOREIGN KEY([nguoidungid]) REFERENCES [dbo].[nguoidung] ([nguoidungid])
 GO
+
+// dữ liệu bảng dbo.xe
+    INSERT INTO xe (tenxe, bienso, tongghe, loaixe)
+    VALUES
+    -- Limousine 16 chỗ
+    (N'Xe Limousine 01', N'29A-10001', 16, N'Limousine'),
+    (N'Xe Limousine 02', N'29A-10002', 16, N'Limousine'),
+    (N'Xe Limousine 03', N'30B-10003', 16, N'Limousine'),
+    (N'Xe Limousine 04', N'30B-10004', 16, N'Limousine'),
+    (N'Xe Limousine 05', N'51C-10005', 16, N'Limousine'),
+
+    -- Giường nằm 30 chỗ
+    (N'Xe Giường Nằm 01', N'43A-20001', 30, N'Giường nằm'),
+    (N'Xe Giường Nằm 02', N'43A-20002', 30, N'Giường nằm'),
+    (N'Xe Giường Nằm 03', N'92B-20003', 30, N'Giường nằm'),
+    (N'Xe Giường Nằm 04', N'92B-20004', 30, N'Giường nằm'),
+    (N'Xe Giường Nằm 05', N'29A-20005', 30, N'Giường nằm');
+
+
+// dữ liệu bảng dbo.tuyenxe
+INSERT INTO tuyenxe (khoihanh, diemden, khoangcach, thoigiandichuyen)
+VALUES
+-- Hà Nội → Hải Phòng
+(N'Hà Nội', N'Hải Phòng', 120.0, 150),
+(N'Hà Nội', N'Hải Phòng', 120.0, 150),
+(N'Hà Nội', N'Hải Phòng', 120.0, 150),
+(N'Hà Nội', N'Hải Phòng', 120.0, 150),
+
+-- Hà Nội → Thanh Hóa
+(N'Hà Nội', N'Thanh Hóa', 160.0, 180),
+(N'Hà Nội', N'Thanh Hóa', 160.0, 180),
+(N'Hà Nội', N'Thanh Hóa', 160.0, 180),
+
+-- Hà Nội → Nam Định
+(N'Hà Nội', N'Nam Định', 90.0, 120),
+(N'Hà Nội', N'Nam Định', 90.0, 120),
+(N'Hà Nội', N'Nam Định', 90.0, 120);
+
+
+// dữ liệu bảng dbo.lichtrinh
+INSERT INTO lichtrinh
+(xeid, tuyenid, thoigiankhoihanh, thoigianden, soghetrong, giave)
+VALUES
+-- Hà Nội → Hải Phòng
+(1,  1, '2025-01-10 07:00:00', '2025-01-10 09:30:00', 16, 150000),
+(2,  2, '2025-01-10 10:00:00', '2025-01-10 12:30:00', 16, 150000),
+(6,  3, '2025-01-10 19:00:00', '2025-01-10 22:30:00', 30, 180000),
+
+-- Hà Nội → Thanh Hóa
+(3,  4, '2025-01-11 06:00:00', '2025-01-11 09:00:00', 16, 200000),
+(4,  5, '2025-01-11 13:00:00', '2025-01-11 16:00:00', 16, 200000),
+(7,  6, '2025-01-11 22:00:00', '2025-01-12 01:00:00', 30, 230000),
+
+-- Hà Nội → Nam Định
+(5,  7, '2025-01-12 07:30:00', '2025-01-12 09:30:00', 16, 120000),
+(8,  8, '2025-01-12 14:00:00', '2025-01-12 16:00:00', 30, 140000),
+(9,  9, '2025-01-12 18:30:00', '2025-01-12 20:30:00', 30, 140000),
+(10,10, '2025-01-13 06:00:00', '2025-01-13 08:00:00', 16, 120000);
+
+
+// dữ liệu bảng dbo.nguoidung
+INSERT INTO nguoidung
+(hoten, ngaysinh, sdt, email, taikhoan, matkhau, vaitro)
+VALUES
+(N'Nguyễn Văn A', '1995-03-12', '0901234567', 'a@gmail.com', 'nguyenvana', '123456', N'KHÁCH'),
+(N'Trần Thị B', '1998-07-25', '0912345678', 'b@gmail.com', 'tranthib', '123456', N'KHÁCH'),
+(N'Lê Văn C', '1990-11-05', '0923456789', 'c@gmail.com', 'levanc', '123456', N'KHÁCH'),
+(N'Phạm Thị D', '1997-02-18', '0934567890', 'd@gmail.com', 'phamthid', '123456', N'KHÁCH'),
+(N'Hoàng Văn E', '1988-09-30', '0945678901', 'e@gmail.com', 'hoangvane', '123456', N'ADMIN');
+
+// dữ liệu bảng dbo.vexe
+INSERT INTO vexe
+(nguoidungid, lichid, vitrighe, thoigiandat, trangthai)
+VALUES
+(1, 1,  N'A1',  GETDATE(), N'ĐÃ ĐẶT'),
+(2, 1,  N'B1',  GETDATE(), N'ĐÃ ĐẶT'),
+(3, 2,  N'B4',  GETDATE(), N'ĐÃ ĐẶT'),
+(4, 4,  N'C4', GETDATE(), N'ĐÃ ĐẶT'),
+(5, 5,  N'B2',  GETDATE(), N'ĐÃ ĐẶT'),
+(1, 3,  N'B4', GETDATE(), N'ĐÃ ĐẶT'),
+(2, 9,  N'C3', GETDATE(), N'ĐÃ ĐẶT'),
+(3, 6,  N'D6', GETDATE(), N'ĐÃ ĐẶT'),
+(4, 10, N'A4',  GETDATE(), N'ĐÃ ĐẶT'),
+(5, 8,  N'C6', GETDATE(), N'ĐÃ ĐẶT');
