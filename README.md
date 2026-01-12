@@ -1,8 +1,8 @@
-# 🚌 Phần Mềm Quản Lý Vé Xe Khách
+# Phần Mềm Quản Lý Vé Xe Khách
 
 Đây là ứng dụng máy tính (Desktop Application) được xây dựng bằng ngôn ngữ **Java**, hỗ trợ quản lý hệ thống đặt vé xe khách/xe bus. Hệ thống bao gồm các chức năng quản lý người dùng, lịch trình, tuyến xe và đặt vé, phục vụ cho cả quản lí người dùng và người dùng (User).
 
-## 🚀 Tính Năng Chính
+## Tính Năng Chính
 
 Dựa trên cấu trúc mã nguồn hiện tại, phần mềm cung cấp các chức năng sau:
 
@@ -18,7 +18,7 @@ Dựa trên cấu trúc mã nguồn hiện tại, phần mềm cung cấp các c
 * **Đặt vé xe:** Xem sơ đồ ghế, chọn chỗ và đặt vé (`UIDialogShowCartrip`, `VeXe`).
 * **Quản lý cá nhân:** Xem lịch sử vé đã đặt (`UIInforTicket`), cập nhật thông tin cá nhân (`UIFixInfor`) và đổi mật khẩu (`UIFixPass`).
 
-## 🛠 Công Nghệ Sử Dụng
+## Công Nghệ Sử Dụng
 
 * **Ngôn ngữ lập trình:** Java (JDK 11 trở lên).
 * **Giao diện (GUI):** Java Swing (được thiết kế bằng IntelliJ GUI Designer - `.form`).
@@ -26,7 +26,7 @@ Dựa trên cấu trúc mã nguồn hiện tại, phần mềm cung cấp các c
 * **IDE Phát triển:** IntelliJ IDEA.
 * **Thư viện kết nối:** JDBC (`mssql-jdbc`).
 
-## 📂 Cấu Trúc Dự Án
+## Cấu Trúc Dự Án
 
 Dự án được tổ chức thành các module rõ ràng:
 
@@ -39,7 +39,7 @@ Dự án được tổ chức thành các module rõ ràng:
     * `src/sprites/`: Tài nguyên hình ảnh, icon.
 * **`database/`**: Chứa file kịch bản SQL (`xekhach.sql`) để khởi tạo CSDL.
 
-## ⚙️ Hướng Dẫn Cài Đặt (Installation)
+## Hướng Dẫn Cài Đặt (Installation)
 
 ### Bước 1: Chuẩn bị môi trường
 * Cài đặt **Java JDK 11** (hoặc mới hơn).
